@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia do Discente – Doutorado | PPGCIAM</title>
+<meta name="description" content="Guia didático com as regras do Doutorado do PPGCIAM: pré-qualificação, qualificação, atividades complementares, defesa da tese, prazos, trancamento e diploma.">
+<style>
+:root{
+  --azul:#0b3f85; --azul-esc:#082a5c; --azul-cl:#e8eff9; --amarelo:#f2a900; --amarelo-cl:#fff4d6;
+  --texto:#1b2430; --suave:#4a5666; --linha:#d5dce6; --fundo:#ffffff; --fundo2:#f4f7fb;
+  --ok:#14663a; --ok-cl:#e2f3e8; --alerta:#8a1f1f; --alerta-cl:#fbe6e6; --atencao-cl:#fff4d6;
+  --raio:10px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;font-family:Rawline,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--texto);background:var(--fundo);line-height:1.6;font-size:17px}
+a{color:var(--azul)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid var(--amarelo);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--amarelo);color:#000;padding:8px 14px;border-radius:6px;z-index:10;font-weight:700}
+.skip:focus{left:8px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* cabeçalho */
+header.topo{background:linear-gradient(135deg,var(--azul-esc),var(--azul));color:#fff;padding:36px 0 30px}
+.eyebrow{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--amarelo);margin:0 0 6px}
+header.topo h1{margin:0 0 10px;font-size:clamp(1.8rem,4.6vw,2.6rem);line-height:1.15}
+header.topo p{margin:0;max-width:680px;color:#e6eefb}
+.nivel{display:inline-block;margin-top:16px;background:var(--amarelo);color:#1b1b1b;font-weight:800;border-radius:999px;padding:4px 14px;font-size:.9rem}
+
+/* aviso */
+.aviso{background:var(--atencao-cl);border-left:6px solid var(--amarelo);margin:22px 0 8px;padding:14px 18px;border-radius:0 var(--raio) var(--raio) 0;font-size:.95rem}
+.aviso strong{display:block;margin-bottom:2px}
+
+/* busca e cartões */
+.busca{margin:26px 0 8px}
+.busca label{display:block;font-weight:700;margin-bottom:6px}
+.busca input{width:100%;padding:12px 14px;font-size:1rem;border:2px solid var(--linha);border-radius:var(--raio);font-family:inherit}
+.busca input:focus{border-color:var(--azul)}
+h2.quero{font-size:1.35rem;margin:26px 0 12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;list-style:none;padding:0;margin:0}
+.cards a{display:block;height:100%;text-decoration:none;color:var(--texto);background:var(--fundo2);border:1px solid var(--linha);border-radius:var(--raio);padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.cards a:hover{border-color:var(--azul);box-shadow:0 2px 10px rgba(11,63,133,.15)}
+.cards .q{display:block;font-size:.78rem;font-weight:800;color:var(--azul);text-transform:uppercase;letter-spacing:.05em}
+.cards .t{display:block;font-weight:700;font-size:1.02rem;margin:2px 0}
+.cards .d{display:block;font-size:.88rem;color:var(--suave)}
+.cards li[hidden]{display:none}
+#semresultado{display:none;margin:12px 0;color:var(--suave)}
+
+/* tópicos */
+section.topico{margin:46px 0 0;padding-top:30px;border-top:3px solid var(--azul)}
+section.topico h2{font-size:1.65rem;line-height:1.25;margin:0 0 8px;color:var(--azul-esc)}
+section.topico h2 .q{color:var(--azul);font-weight:600}
+section.topico h3{font-size:1.1rem;margin:24px 0 8px;color:var(--azul-esc)}
+.resumo{font-size:1.08rem;background:var(--azul-cl);border-radius:var(--raio);padding:14px 18px;margin:10px 0 6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}}
+.box{border:1px solid var(--linha);border-radius:var(--raio);padding:4px 18px 12px;background:#fff}
+.box h3{margin-top:14px}
+ul,ol{padding-left:1.3em}
+li{margin:5px 0}
+ul.check{list-style:none;padding-left:0}
+ul.check li{position:relative;padding-left:28px}
+ul.check li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:var(--ok-cl);color:var(--ok);font-weight:800;font-size:.8rem;display:flex;align-items:center;justify-content:center;margin-top:3px}
+ol.passos{list-style:none;counter-reset:p;padding-left:0}
+ol.passos>li{counter-increment:p;position:relative;padding:8px 0 8px 46px;border-bottom:1px dashed var(--linha)}
+ol.passos>li:last-child{border-bottom:0}
+ol.passos>li::before{content:counter(p);position:absolute;left:0;top:8px;width:32px;height:32px;border-radius:50%;background:var(--azul);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.base{font-size:.85rem;color:var(--suave);margin-top:18px}
+.gerar-box{margin:6px 0 12px}
+.gerar{display:inline-block;background:var(--azul);color:#fff!important;font-weight:700;border-radius:6px;padding:10px 20px;text-decoration:none}
+.gerar:hover{background:var(--azul-esc)}
+.gerar-box span{display:block;color:var(--suave);font-size:.9rem;margin-top:5px}
+.base span,.art{display:inline-block;background:var(--fundo2);border:1px solid var(--linha);border-radius:6px;padding:0 7px;font-size:.8rem;font-weight:700;color:var(--azul-esc);white-space:nowrap}
+.destaque{background:var(--alerta-cl);border-left:6px solid var(--alerta);border-radius:0 var(--raio) var(--raio) 0;padding:12px 16px;margin:16px 0}
+.dica{background:var(--ok-cl);border-left:6px solid var(--ok);border-radius:0 var(--raio) var(--raio) 0;padding:12px 16px;margin:16px 0}
+.atencao{background:var(--atencao-cl);border-left:6px solid var(--amarelo);border-radius:0 var(--raio) var(--raio) 0;padding:12px 16px;margin:16px 0}
+.destaque p,.dica p,.atencao p{margin:0}
+
+/* linha do tempo */
+.linha{list-style:none;padding:0;margin:14px 0;position:relative}
+.linha li{position:relative;margin:0;padding:0 0 18px 34px}
+.linha li::before{content:"";position:absolute;left:9px;top:8px;bottom:-8px;width:3px;background:var(--linha)}
+.linha li:last-child::before{display:none}
+.linha li::after{content:"";position:absolute;left:0;top:5px;width:21px;height:21px;border-radius:50%;background:var(--azul);border:4px solid var(--azul-cl)}
+.linha b{display:block}
+.linha span.prazo{display:inline-block;background:var(--amarelo-cl);border:1px solid #e8c766;border-radius:6px;padding:0 8px;font-size:.85rem;font-weight:700;margin-right:6px}
+
+/* tabelas */
+.tab{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.95rem}
+caption{text-align:left;font-weight:700;padding:0 0 6px}
+th,td{border:1px solid var(--linha);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:var(--azul);color:#fff;font-weight:700}
+tbody tr:nth-child(even){background:var(--fundo2)}
+td.n{text-align:center;font-weight:800;white-space:nowrap}
+
+/* calculadora */
+.calc{background:var(--fundo2);border:1px solid var(--linha);border-radius:var(--raio);padding:18px}
+.calc .campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.calc label{display:block;font-weight:700;font-size:.93rem;margin-bottom:4px}
+.calc small{display:block;color:var(--suave);font-size:.8rem;font-weight:400;margin-top:2px}
+.calc input{width:100%;padding:10px 12px;font-size:1rem;border:2px solid var(--linha);border-radius:8px;font-family:inherit;background:#fff}
+.calc button{margin-top:16px;background:var(--azul);color:#fff;border:0;border-radius:999px;padding:11px 26px;font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit}
+.calc button:hover{background:var(--azul-esc)}
+#resultado{margin-top:18px}
+#resultado .erro{background:var(--alerta-cl);border-left:6px solid var(--alerta);padding:10px 14px;border-radius:0 8px 8px 0}
+.st{font-size:.78rem;font-weight:800;border-radius:999px;padding:1px 9px;white-space:nowrap}
+.st.ok{background:var(--ok-cl);color:var(--ok)}
+.st.venc{background:var(--alerta-cl);color:var(--alerta)}
+.st.breve{background:var(--atencao-cl);color:#7a5400}
+
+details.faq{border:1px solid var(--linha);border-radius:var(--raio);margin:8px 0;background:#fff}
+details.faq summary{cursor:pointer;font-weight:700;padding:12px 16px;list-style:none}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::before{content:"+";display:inline-block;width:1.2em;color:var(--azul);font-weight:800}
+details.faq[open] summary::before{content:"–"}
+details.faq .r{padding:0 16px 12px}
+
+footer.rodape{margin-top:56px;background:var(--azul-esc);color:#dbe6f7;padding:28px 0;font-size:.9rem}
+footer.rodape a{color:#fff}
+footer.rodape h2{color:#fff;font-size:1.05rem;margin:0 0 8px}
+footer.rodape ul{margin:0 0 14px}
+.topo-link{display:inline-block;margin-top:10px;font-size:.9rem}
+
+
+@media(max-width:640px){
+  .js table.stack{min-width:0}
+  .js table.stack thead{position:absolute;left:-9999px}
+  .js table.stack tr{display:block;border:1px solid var(--linha);border-radius:var(--raio);margin:0 0 12px;background:#fff;overflow:hidden}
+  .js table.stack td{display:block;border:0;border-bottom:1px solid var(--linha);text-align:left}
+  .js table.stack td:last-child{border-bottom:0}
+  .js table.stack td::before{content:attr(data-label);display:block;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--azul)}
+  .js table.stack td.n{text-align:left;white-space:normal}
+}
+
+@media print{
+  header.topo{background:none;color:#000;padding:0}
+  header.topo p,.eyebrow{color:#000}
+  .busca,.cards,.calc button,.topo-link,.skip{display:none}
+  section.topico{break-inside:auto}
+  .box,.destaque,.dica,.atencao,.resumo{break-inside:avoid}
+  footer.rodape{background:none;color:#000}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Ir para o conteúdo</a>
+
+<header class="topo">
+  <div class="wrap">
+    <p class="eyebrow">PPGCIAM · Ufac</p>
+    <h1>Guia do Discente: Doutorado</h1>
+    <p>As regras do Programa de Pós-Graduação em Ciência Animal na Amazônia, explicadas passo a passo: o que fazer, quando fazer e como pedir.</p>
+    <span class="nivel">Doutorado</span>
+  </div>
+</header>
+
+<main id="conteudo" class="wrap">
+
+  <div class="aviso" role="note">
+    <strong>Material informativo.</strong>
+    Este guia resume as normas do Programa para facilitar a consulta e não substitui os documentos oficiais. Em caso de conflito, prevalece o Regimento Interno do Programa. Na dúvida, fale com a Secretaria antes de agir: <a href="mailto:ppgciam@ufac.br">ppgciam@ufac.br</a>. Os modelos dos demais formulários estão na <a href="https://www3.ufac.br/ppg/ppgciam/documentos" target="_blank" rel="noopener">página de documentos do Programa</a>. Para pré-qualificação, qualificação e defesa, use o <a href="https://ppggespa-del.github.io/guia-discente/solicitacao-de-banca.html" target="_blank" rel="noopener">gerador de solicitação de banca</a>.
+    <br><small>Última atualização: <span id="dataAtualizacao">17/11/2026</span> · versão 1.1 (Doutorado).</small>
+  </div>
+
+  <div class="busca">
+    <label for="q">Procure um assunto</label>
+    <input id="q" type="search" placeholder="Ex.: qualificação, prorrogação, créditos, diploma" autocomplete="off">
+  </div>
+
+  <h2 class="quero" id="indice">O que você quer fazer?</h2>
+  <ul class="cards" id="cards">
+    <li data-k="visão geral resumo créditos prazos duração etapas início começar"><a href="#visao"><span class="q">Quero entender</span><span class="t">O doutorado em uma página</span><span class="d">Etapas, créditos e prazos</span></a></li>
+    <li data-k="calculadora datas prazos matrícula quando"><a href="#calculadora"><span class="q">Quero calcular</span><span class="t">Os meus prazos</span><span class="d">Digite sua matrícula e veja as datas</span></a></li>
+    <li data-k="formulários modelos requerimento documentos baixar download"><a href="https://www3.ufac.br/ppg/ppgciam/documentos" target="_blank" rel="noopener"><span class="q">Quero baixar</span><span class="t">Os formulários</span><span class="d">Modelos de requerimento do Programa (abre em nova aba)</span></a></li>
+    <li data-k="pré-qualificação pre qualificação projeto defesa de projeto"><a href="#prequalificacao"><span class="q">Quero fazer</span><span class="t">A pré-qualificação</span><span class="d">Defesa do pré-projeto</span></a></li>
+    <li data-k="qualificação exame banca requisitos solicitar"><a href="#qualificacao"><span class="q">Quero fazer</span><span class="t">O exame de qualificação</span><span class="d">Requisitos, banca e como pedir</span></a></li>
+    <li data-k="acc atividades complementares créditos estágio docência eventos artigos"><a href="#acc"><span class="q">Quero cumprir</span><span class="t">As atividades complementares</span><span class="d">8 créditos: quais valem e quanto</span></a></li>
+    <li data-k="defesa tese banca marcar versão final artigo"><a href="#defesa"><span class="q">Quero marcar</span><span class="t">A defesa da tese</span><span class="d">Requisitos, banca e versão final</span></a></li>
+    <li data-k="prorrogação prorrogar prazo atraso estender"><a href="#prorrogacao"><span class="q">Quero pedir</span><span class="t">Prorrogação de prazo</span><span class="d">Como e até quando</span></a></li>
+    <li data-k="trancamento trancar matrícula disciplina curso licença"><a href="#trancamento"><span class="q">Quero pedir</span><span class="t">Trancamento</span><span class="d">De disciplina ou do curso</span></a></li>
+    <li data-k="aproveitamento créditos outro programa equivalência aluno especial"><a href="#aproveitamento"><span class="q">Quero pedir</span><span class="t">Aproveitamento de créditos</span><span class="d">Disciplinas cursadas em outro lugar</span></a></li>
+    <li data-k="proficiência língua estrangeira inglês idioma exame"><a href="#proficiencia"><span class="q">Quero saber sobre</span><span class="t">A proficiência em língua estrangeira</span><span class="d">Exigência para o título</span></a></li>
+    <li data-k="seminário anual acompanhamento relatório bolsa bolsista apresentação"><a href="#seminario"><span class="q">Quero saber sobre</span><span class="t">O Seminário Anual</span><span class="d">Acompanhamento discente obrigatório</span></a></li>
+    <li data-k="diploma título concluir nada consta histórico"><a href="#diploma"><span class="q">Quero receber</span><span class="t">O meu diploma</span><span class="d">O caminho depois da defesa</span></a></li>
+    <li data-k="desligamento jubilamento reprovação evitar risco recurso"><a href="#desligamento"><span class="q">Quero evitar</span><span class="t">O desligamento</span><span class="d">O que pode levar à perda da vaga</span></a></li>
+  </ul>
+  <p id="semresultado" role="status">Nenhum assunto encontrado. Tente outra palavra.</p>
+
+  <!-- ===================== VISÃO GERAL ===================== -->
+  <section class="topico" id="visao" aria-labelledby="h-visao">
+    <h2 id="h-visao"><span class="q">Quero entender</span> o doutorado em uma página</h2>
+    <p class="resumo">O doutorado dura no mínimo 36 e no máximo 48 meses, contados da primeira matrícula. Você precisa de 38 créditos, passar pela pré-qualificação e pela qualificação, ser aprovado em exame de proficiência em língua estrangeira, defender a tese e entregar a versão final com o comprovante de submissão de um artigo.</p>
+
+    <h3>As etapas, na ordem</h3>
+    <ol class="linha">
+      <li><b>Matrícula</b>Começa a contagem dos prazos. Renove a matrícula todo semestre, pelo SEI. <span class="art">Arts. 32 a 34</span></li>
+      <li><span class="prazo">até 5 meses</span><b>Pré-qualificação</b>Defesa do pré-projeto. <a href="#prequalificacao">Ver como fazer</a>. <span class="art">Art. 60</span></li>
+      <li><span class="prazo">até 40 meses</span><b>Qualificação</b>Exame com a banca, depois da pré-qualificação aprovada. <a href="#qualificacao">Ver como fazer</a>. <span class="art">Art. 61</span></li>
+      <li><span class="prazo">36 a 48 meses</span><b>Defesa da tese</b>Não é possível defender antes de completar 36 meses de curso. <a href="#defesa">Ver como fazer</a>. <span class="art">Arts. 41, 42 e 68 a 72</span></li>
+      <li><span class="prazo">até 45 dias após a defesa</span><b>Versão final</b>Com as correções da banca e o comprovante de submissão do artigo. <span class="art">Art. 73</span></li>
+      <li><b>Diploma</b>Processo aberto por você no SEI. <a href="#diploma">Ver como fazer</a>. <span class="art">Arts. 74 a 76</span></li>
+    </ol>
+
+    <h3>Os 38 créditos</h3>
+    <div class="tab">
+      <table>
+        <caption>Composição mínima para concluir o doutorado (Art. 54)</caption>
+        <thead><tr><th scope="col">Tipo</th><th scope="col">Créditos</th><th scope="col">O que é</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Disciplinas obrigatórias</th><td class="n">11</td><td>Bem-estar e Uso de Animais em Pesquisa (2); Preparação Pedagógica (2); Metodologia da Pesquisa e Publicação de Artigos (2); Seminário de Pós-graduação II (2); Estatística Não Paramétrica e Modelos Lineares Aplicados à Pesquisa (3). Créditos conforme a estrutura curricular cadastrada no sistema acadêmico.</td></tr>
+          <tr><th scope="row">Disciplinas optativas</th><td class="n">19</td><td>Escolhidas com o orientador, entre as ofertadas a cada semestre. O plano de disciplinas é validado pela Coordenação ou pelo Colegiado.</td></tr>
+          <tr><th scope="row">Atividades complementares (ACC)</th><td class="n">8</td><td>Veja <a href="#acc">as atividades que valem</a>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Um crédito corresponde a 15 horas de atividade (Resolução CONSU nº 50, Art. 42). Além dos 38 créditos, o sistema acadêmico registra a tese como componente curricular (Tese I a IV, 12 créditos).</p>
+
+    <h3>Regras do dia a dia</h3>
+    <ul class="check">
+      <li>Renovar a matrícula <strong>todo semestre</strong>, pelo SEI, com a assinatura do orientador no comprovante. <span class="art">Art. 34 e Art. 44, VI</span></li>
+      <li>Frequência mínima de <strong>75%</strong> em cada disciplina. <span class="art">Art. 40</span></li>
+      <li>Para ser aprovado em uma disciplina, o conceito deve ser <strong>Regular (C, de 5,0 a 6,9) ou superior</strong>, além dos 75% de frequência. <span class="art">Arts. 48 e 49</span></li>
+      <li>Participar do <strong>Seminário Anual</strong> de Acompanhamento Discente, que é obrigatório. <a href="#seminario">Saiba mais</a>. <span class="art">Normativa 01/2026, Art. 7º</span></li>
+      <li>Pedido de revisão de prova: até <strong>72 horas</strong> depois do resultado, pelo SEI, com justificativa. <span class="art">Art. 51</span></li>
+    </ul>
+
+    <h3>O que é exigido para receber o título</h3>
+    <ul class="check">
+      <li>Ter todos os <strong>créditos</strong> integralizados.</li>
+      <li>Ter <strong>aprovação no exame de qualificação</strong>.</li>
+      <li>Ter <strong>aprovação em exame de proficiência</strong> em língua estrangeira, diferente da utilizada no mestrado.</li>
+      <li>Ter a <strong>tese aprovada</strong> pela banca.</li>
+      <li>Estar em dia com as obrigações na universidade (por exemplo, livros emprestados da biblioteca).</li>
+      <li>Entregar o <strong>comprovante de submissão do artigo</strong> junto com a versão final, em até 45 dias após a defesa.</li>
+    </ul>
+    <p class="base">Base legal: Regimento Interno do Programa, Arts. 32 a 34, 40 a 42, 44, 48, 49, 51, 54 e 75; Normativa Interna PPGCIAM nº 01/2026, Arts. 6º e 7º; Resolução CONSU nº 50, Art. 42.</p>
+  </section>
+
+  <!-- ===================== CALCULADORA ===================== -->
+  <section class="topico" id="calculadora" aria-labelledby="h-calc">
+    <h2 id="h-calc"><span class="q">Quero calcular</span> os meus prazos</h2>
+    <p class="resumo">Digite a data da sua primeira matrícula e veja, em segundos, até quando você precisa fazer cada etapa.</p>
+    <form class="calc" id="formCalc" novalidate>
+      <div class="campos">
+        <div>
+          <label for="cMat">Data da primeira matrícula <span aria-hidden="true">*</span></label>
+          <input id="cMat" type="date" required>
+        </div>
+        <div>
+          <label for="cLic">Licença-maternidade (meses)</label>
+          <input id="cLic" type="number" min="0" max="24" step="1" value="0" inputmode="numeric">
+          <small>Some só se você tiver licença registrada.</small>
+        </div>
+        <div>
+          <label for="cPro">Prorrogação da defesa concedida (meses)</label>
+          <input id="cPro" type="number" min="0" max="24" step="1" value="0" inputmode="numeric">
+          <small>Some só se o Colegiado já tiver concedido.</small>
+        </div>
+        <div>
+          <label for="cDtQ">Data pretendida da qualificação (opcional)</label>
+          <input id="cDtQ" type="date">
+        </div>
+        <div>
+          <label for="cDtD">Data pretendida da defesa (opcional)</label>
+          <input id="cDtD" type="date">
+        </div>
+      </div>
+      <button type="submit">Calcular</button>
+    </form>
+    <div id="resultado" aria-live="polite"></div>
+    <p class="base">Como a calculadora conta: os prazos em meses são contados a partir da data de matrícula, no mesmo dia do mês (se o dia não existir no mês final, usa-se o último dia). O período de trancamento conta no prazo; só a licença-maternidade soma, e você a informa no campo próprio. O resultado é uma referência; vale o que o Regimento e o Colegiado decidirem. Base legal: Regimento Interno, Arts. 41, 42, 60, 61, 64, 68 e 73.</p>
+  </section>
+
+  <!-- ===================== PRÉ-QUALIFICAÇÃO ===================== -->
+  <section class="topico" id="prequalificacao" aria-labelledby="h-pre">
+    <h2 id="h-pre"><span class="q">Quero fazer</span> a pré-qualificação</h2>
+    <p class="resumo">É a defesa do seu pré-projeto de pesquisa. Deve acontecer em até <strong>5 meses</strong> da sua matrícula, e a reprovação leva ao desligamento do Programa.</p>
+
+    <div class="grid2">
+      <div class="box">
+        <h3>Antes de pedir</h3>
+        <ul class="check">
+          <li>Pré-projeto escrito, com: introdução, justificativa, objetivos, material e métodos, resultados esperados, cronograma (de execução e financeiro) e referências, no modelo do Programa.</li>
+          <li><strong>Banca</strong> definida com seu orientador: todos doutores, com <strong>no máximo 1 titular vinculado à Ufac</strong>, além do orientador. Os demais titulares devem ser <strong>externos à Ufac</strong>. O Colegiado aprova a composição.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Prazos</h3>
+        <ul>
+          <li>Realizar a pré-qualificação: até <strong>5 meses</strong> da matrícula.</li>
+          <li>Entregar o texto aos membros da banca, em PDF e Word: pelo menos <strong>10 dias</strong> antes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Passo a passo</h3>
+    <p class="gerar-box"><a class="gerar" href="https://ppggespa-del.github.io/guia-discente/solicitacao-de-banca.html" target="_blank" rel="noopener">Gerar a solicitação de pré-qualificação</a><span>O gerador monta o requerimento. O pedido continua sendo feito pelo SEI.</span></p>
+    <ol class="passos">
+      <li><strong>Gere a solicitação de pré-qualificação</strong> no gerador (botão acima): escolha a etapa e o curso, preencha os dados e salve em PDF. Assinam você e o orientador.</li>
+      <li><strong>Abra o processo no SEI</strong> e anexe o requerimento assinado (que já traz a banca proposta) e o <strong>pré-projeto</strong>.</li>
+      <li><strong>Envie o texto à banca</strong> (PDF e Word) com pelo menos 10 dias de antecedência.</li>
+      <li><strong>Apresente</strong> em sessão pública, de forma presencial ou remota (se for remota, precisa ser ao vivo): de 20 a 30 minutos de fala. Cada examinador, exceto o presidente da banca, tem 30 minutos para considerações e perguntas.</li>
+      <li><strong>Aguarde o parecer.</strong> A banca se reúne sem você. Cada examinador dá o conceito aprovado ou reprovado. Você só é aprovado se <strong>todos</strong> aprovarem.</li>
+      <li><strong>A ata</strong>, assinada por toda a banca, é entregue à Secretaria.</li>
+    </ol>
+
+    <div class="destaque"><p><strong>Atenção:</strong> quem é reprovado na pré-qualificação é desligado do Programa.</p></div>
+    <p class="base">Base legal: Regimento Interno, Art. 60; Normativa Interna PPGCIAM nº 01/2026, Art. 4º.</p>
+  </section>
+
+  <!-- ===================== QUALIFICAÇÃO ===================== -->
+  <section class="topico" id="qualificacao" aria-labelledby="h-qual">
+    <h2 id="h-qual"><span class="q">Quero fazer</span> o exame de qualificação</h2>
+    <p class="resumo">É o exame em que você mostra à banca o andamento do trabalho, com resultados parciais. Só pode ser feito <strong>depois da pré-qualificação aprovada</strong> e em até <strong>40 meses</strong> da matrícula.</p>
+
+    <div class="grid2">
+      <div class="box">
+        <h3>Requisitos</h3>
+        <ul class="check">
+          <li>Pré-qualificação <strong>aprovada</strong>.</li>
+          <li>Estar dentro dos <strong>40 meses</strong> da matrícula (ou do prazo prorrogado pelo Colegiado).</li>
+          <li>Texto de qualificação pronto: introdução, revisão de literatura, material e métodos, <strong>resultados parciais</strong> e referências (modelo do Programa).</li>
+          <li>Banca de <strong>4 doutores</strong>, com a composição aprovada pelo Colegiado.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Prazos</h3>
+        <ul>
+          <li>Pedir a banca: protocolar a solicitação pelo menos <strong>15 dias antes</strong> da data sugerida para o exame.</li>
+          <li>Entregar o texto aos membros da banca (PDF e Word): pelo menos <strong>15 dias antes</strong>.</li>
+          <li>Se for reprovado: nova oportunidade, <strong>em no máximo 60 dias</strong> da reprovação.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Quem compõe a banca</h3>
+    <div class="tab">
+      <table>
+        <caption>Banca de qualificação: 4 doutores</caption>
+        <thead><tr><th scope="col">Função</th><th scope="col">Quem</th></tr></thead>
+        <tbody>
+          <tr><td>Presidência</td><td>Orientador ou coorientador</td></tr>
+          <tr><td>Membro interno</td><td>1 doutor vinculado à Ufac (no máximo 1 titular da Ufac, além do orientador)</td></tr>
+          <tr><td>Membro externo</td><td>1 doutor externo à Ufac</td></tr>
+          <tr><td>Suplente</td><td>1 doutor</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Todos os membros, titulares e suplente, precisam ter título de doutor e qualificação compatível com a área do trabalho. Essa regra de composição vale também para a pré-qualificação e para a defesa.</p>
+
+    <h3>Passo a passo</h3>
+    <p class="gerar-box"><a class="gerar" href="https://ppggespa-del.github.io/guia-discente/solicitacao-de-banca.html" target="_blank" rel="noopener">Gerar a solicitação de qualificação</a><span>O gerador monta o requerimento. O pedido continua sendo feito pelo SEI.</span></p>
+    <ol class="passos">
+      <li><strong>Combine com o orientador</strong> a data, o horário, o local (ou o link, se for remoto) e os nomes da banca.</li>
+      <li><strong>Gere a solicitação de qualificação</strong> no gerador (botão acima). Ele pede: nível, seu nome, orientador, coorientador, título do trabalho, data, horário, local e, para cada membro da banca, o nome completo (sem abreviações), a instituição, a função, o CPF, o telefone e o e-mail. O gerador avisa se a antecedência ou a composição da banca parecerem fora das regras. Salve em PDF; assinam você e o orientador.</li>
+      <li><strong>Abra o processo no SEI</strong> e anexe, à Coordenação, o requerimento assinado e o <strong>texto da qualificação</strong>, com pelo menos 15 dias de antecedência da data do exame.</li>
+      <li><strong>Entregue o texto à banca</strong> (PDF e Word), também com 15 dias de antecedência.</li>
+      <li><strong>Apresente</strong> em sessão pública, presencial ou remota (se remota, ao vivo): de 30 a 50 minutos de fala. Cada examinador tem 30 minutos para considerações e perguntas.</li>
+      <li><strong>Resultado:</strong> a banca se reúne e cada examinador dá o conceito aprovado ou reprovado. A aprovação exige que <strong>todos</strong> aprovem. A ata, assinada por toda a banca, é entregue à Secretaria.</li>
+    </ol>
+
+    <h3>Se não for aprovado</h3>
+    <p>Você tem <strong>mais uma oportunidade</strong>, em no máximo 60 dias a contar da reprovação. Se for reprovado de novo, é desligado do Programa.</p>
+    <div class="destaque"><p><strong>Atenção:</strong> não fazer a qualificação dentro do prazo também é motivo de desligamento. Se precisar de mais tempo, veja <a href="#prorrogacao">como pedir prorrogação</a>.</p></div>
+    <p class="base">Base legal: Regimento Interno, Arts. 61 a 65 e 43, III e IV; Normativa Interna PPGCIAM nº 01/2026, Art. 4º.</p>
+  </section>
+
+  <!-- ===================== ACC ===================== -->
+  <section class="topico" id="acc" aria-labelledby="h-acc">
+    <h2 id="h-acc"><span class="q">Quero cumprir</span> as atividades complementares (ACC)</h2>
+    <p class="resumo">Você precisa de <strong>8 créditos</strong> em atividades complementares, feitas <strong>durante o curso</strong>. Sem os 8 créditos concluídos, <strong>não é possível marcar a defesa</strong>. O Colegiado analisa cada atividade com base nos comprovantes que você apresentar.</p>
+
+    <div class="atencao"><p><strong>Importante:</strong> as atividades precisam ter sido desenvolvidas depois do ingresso no curso. Há <strong>três tipos de atividade obrigatória</strong>, e é preciso cumprir os três: (a) participar como ouvinte de bancas de defesa (3 participações valem 1 crédito); (b) publicar pelo menos um artigo (3 créditos por artigo); e (c) fazer o estágio de docência, que corresponde a ministrar disciplina na graduação. Essa é a única exigência quanto aos grupos: os demais créditos, até completar os 8, podem vir de qualquer atividade, dos dois grupos. Cumprindo o mínimo de cada tipo obrigatório, você já soma 5 créditos (1 + 3 + 1). Os limites de cada atividade estão na coluna “Limite”.</p></div>
+
+    <h3>Grupo 1: atividades obrigatórias (as três)</h3>
+    <div class="tab">
+      <table class="stack">
+        <caption>Atividades do grupo 1</caption>
+        <thead><tr><th scope="col">Atividade</th><th scope="col">Créditos</th><th scope="col">Limite</th><th scope="col">O que apresentar</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Ouvinte em bancas de defesa</strong> de mestrado ou doutorado, do Programa ou de fora</td><td class="n">1 a cada 3 participações</td><td>Máximo de 1 crédito nesta modalidade</td><td>Relatório assinado pelo presidente da banca</td></tr>
+          <tr><td><strong>Publicação de artigo</strong> em periódico especializado, nacional ou internacional, com Qualis <strong>mínimo B2</strong> (preferencialmente na área de Medicina Veterinária, Web Qualis/Capes), com data de publicação <strong>posterior ao seu ingresso no doutorado</strong></td><td class="n">3 por artigo</td><td>É obrigatório publicar pelo menos 1 artigo</td><td>Artigo publicado</td></tr>
+          <tr><td><strong>Estágio de docência</strong> (ministrar disciplina na graduação), de no mínimo 30 horas, feito depois do ingresso no doutorado</td><td class="n">1 por estágio</td><td>Até 2 créditos no total, sem acumular</td><td>Requerimento de estágio (início), Plano de estágio e Relatório do estágio de docência na graduação (ao final). Quem ministra disciplina na graduação depois do ingresso apresenta declaração com o nome da disciplina e a carga horária (30 horas)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Grupo 2: atividades optativas</h3>
+    <div class="tab">
+      <table class="stack">
+        <caption>Atividades do grupo 2</caption>
+        <thead><tr><th scope="col">Atividade</th><th scope="col">Créditos</th><th scope="col">Limite</th><th scope="col">O que apresentar</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Apresentar trabalho ou palestrar em evento</strong> (semana acadêmica, congresso, seminário, palestra, conferência, atividade cultural), como autor, com trabalho resultante de estudos feitos durante o curso (completo, resumo expandido ou resumo simples)</td><td class="n">1 por evento</td><td>Até 2 créditos no total</td><td>Comprovante da participação e do trabalho apresentado</td></tr>
+          <tr><td><strong>Estágio em instituição pública ou privada</strong> para treinamento em técnicas da pesquisa ou para parte das atividades práticas do projeto</td><td class="n">Até 1 por estágio</td><td>Sem acumular</td><td>Plano aprovado e relatório final detalhado, mostrando a contribuição para o projeto</td></tr>
+          <tr><td><strong>Organização de evento</strong> científico ou de extensão</td><td class="n">1 por participação</td><td>Até 2 créditos no total</td><td>Plano aprovado e relatório final detalhado</td></tr>
+          <tr><td><strong>Participação em banca de TCC</strong> (de graduação)</td><td class="n">1 por participação</td><td>Até 2 créditos no total</td><td>Comprovante da participação</td></tr>
+          <tr><td><strong>Orientação de TCC</strong> (de graduação)</td><td class="n">2 por orientação</td><td>Apenas 1 orientação</td><td>Comprovante da orientação</td></tr>
+          <tr><td><strong>Avaliador de trabalhos</strong> (oral ou banner) em evento de instituição de educação</td><td class="n">1 por participação</td><td>Até 2 créditos no total</td><td>Comprovante da atuação</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Como pedir os créditos</h3>
+    <ol class="passos">
+      <li><strong>Guarde os comprovantes</strong> durante o curso (certificados, relatórios, declarações, artigo publicado).</li>
+      <li><strong>Reúna tudo antes de pedir.</strong> O pedido é feito uma única vez, com a comprovação de todas as atividades.</li>
+      <li><strong>Abra um processo no SEI</strong>, endereçado ao Programa, solicitando os créditos de atividades complementares, e <strong>anexe todos os comprovantes de uma só vez</strong>. Toda a comprovação precisa estar no mesmo processo: o NURCA não aceita a documentação dividida em mais de um processo.</li>
+      <li><strong>O Colegiado analisa</strong> as atividades com base nos comprovantes e atribui os créditos.</li>
+    </ol>
+    <div class="dica"><p><strong>Dica:</strong> não deixe para a véspera da defesa. Como os 8 créditos são condição para marcar a defesa e o pedido é feito de uma só vez, comece a juntar os comprovantes desde o primeiro semestre, e lembre que o artigo publicado exige tempo de submissão e revisão. Faça o pedido antes de requerer a defesa.</p></div>
+    <p class="base">Base legal: Regimento Interno, Art. 54, § 3º; Instrução Normativa nº 01/2018 do Colegiado (atividades complementares do Doutorado). O envio de todos os comprovantes em um único processo é o procedimento adotado pela Secretaria, por exigência do NURCA. Os modelos de formulário, como o requerimento de estágio de docência, estão na <a href="https://www3.ufac.br/ppg/ppgciam/documentos" target="_blank" rel="noopener">página de documentos do Programa</a>.</p>
+  </section>
+
+  <!-- ===================== DEFESA ===================== -->
+  <section class="topico" id="defesa" aria-labelledby="h-def">
+    <h2 id="h-def"><span class="q">Quero marcar</span> a defesa da tese</h2>
+    <p class="resumo">O pedido é feito pelo SEI com pelo menos <strong>30 dias</strong> de antecedência. Antes disso, é preciso ter qualificação aprovada, créditos concluídos (incluindo os de ACC) e estar dentro do prazo máximo de 48 meses.</p>
+
+    <div class="grid2">
+      <div class="box">
+        <h3>Requisitos</h3>
+        <ul class="check">
+          <li>Qualificação <strong>aprovada</strong>.</li>
+          <li><strong>8 créditos de ACC concluídos</strong>: sem eles, a defesa não pode ser marcada. <a href="#acc">Veja como pedir</a>.</li>
+          <li>Estar dentro da <strong>duração máxima de 48 meses</strong> (ou do prazo prorrogado). A duração mínima é de 36 meses.</li>
+          <li>Tese no formato de capítulos, nos modelos do Programa, seguindo a ABNT e as normas de editoração do Programa e da PROPEG.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Prazos</h3>
+        <ul>
+          <li>Requerer a defesa pelo SEI: pelo menos <strong>30 dias antes</strong> da data prevista.</li>
+          <li>Inserir a tese no SEI no prazo determinado. <strong>Não inserir impede a defesa</strong> e exige adiamento.</li>
+          <li>Versão final, depois da defesa: até <strong>45 dias</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>A banca</h3>
+    <ul>
+      <li><strong>5 membros titulares e 2 suplentes</strong>, todos doutores.</li>
+      <li>O orientador preside. O coorientador não conta como titular, a não ser que o orientador falte.</li>
+      <li>No máximo <strong>1 titular vinculado à Ufac</strong>, além do orientador. Os demais titulares devem ser <strong>externos à Ufac</strong>. (O Regimento exige pelo menos 2 membros de fora da Ufac; essa regra já assegura o mínimo.)</li>
+      <li>Titulares e suplentes precisam ter título de doutor e qualificação compatível com o tema.</li>
+      <li>Você define a banca com o orientador e informa os nomes no pedido de defesa. O Colegiado aprova a composição.</li>
+    </ul>
+
+    <h3>Passo a passo</h3>
+    <p class="gerar-box"><a class="gerar" href="https://ppggespa-del.github.io/guia-discente/solicitacao-de-banca.html" target="_blank" rel="noopener">Gerar a solicitação de defesa</a><span>O gerador monta o requerimento. O pedido continua sendo feito pelo SEI.</span></p>
+    <ol class="passos">
+      <li><strong>Confira</strong> se os 8 créditos de ACC e os demais créditos estão concluídos e se a qualificação foi aprovada.</li>
+      <li><strong>Defina a banca</strong> com o orientador, respeitando a regra de composição acima.</li>
+      <li><strong>Gere a solicitação de defesa</strong> no gerador (botão acima), com os dados da banca definida. Salve em PDF; assinam você e o orientador.</li>
+      <li><strong>Requeira a defesa pelo SEI</strong> (você ou o orientador): anexe o requerimento assinado e a <strong>tese</strong>, com pelo menos 30 dias de antecedência da data prevista. A tese deve ser inserida no SEI no prazo determinado.</li>
+      <li><strong>Apresente</strong> em sessão pública, presencial ou remota (se remota, ao vivo): de 30 a 50 minutos de fala. Cada examinador tem 30 minutos para arguir e você tem o mesmo tempo para responder.</li>
+      <li><strong>Resultado:</strong> a tese é aprovada com a manifestação favorável e <strong>unânime</strong> dos membros da banca.</li>
+      <li><strong>Faça as correções</strong> indicadas pela banca, acompanhado do orientador, e envie a versão final em PDF pelo SEI à Secretaria, <strong>junto com o comprovante de submissão do artigo</strong>, em até 45 dias. Para o pedido do diploma, essa versão deve ter todas as assinaturas cabíveis e a ficha catalográfica da Biblioteca (<a href="#diploma">veja o passo a passo do diploma</a>).</li>
+    </ol>
+
+    <div class="atencao">
+      <p><strong>Sobre o artigo:</strong> a documentação que comprova a submissão (ou aceite) do artigo derivado da sua pesquisa deve ser entregue com a versão final. Os artigos devem ter sido submetidos em revista com classificação mínima B2 (Qualis/CAPES de Medicina Veterinária). Sem o comprovante, você <strong>não recebe o grau</strong>.</p>
+      <p>Atenção: essa exigência é <strong>diferente</strong> da publicação de artigo exigida nas atividades complementares (<a href="#acc">veja o grupo 1</a>). Cada uma tem a sua norma. Se tiver dúvida sobre se o mesmo artigo atende às duas, consulte a Secretaria antes de decidir.</p>
+    </div>
+
+    <h3>Se for reprovado</h3>
+    <p>Por recomendação da banca, pode ser concedida uma nova defesa em <strong>até 3 meses</strong> da reprovação, com a nova versão enviada à Coordenação. Se a nova versão não for entregue no prazo, ou se houver nova reprovação, você é desligado do Programa.</p>
+    <p class="base">Base legal: Regimento Interno, Arts. 66 a 73 e 75; Normativa Interna PPGCIAM nº 01/2026, Art. 4º; Instrução Normativa nº 01/2018 (ACC).</p>
+  </section>
+
+  <!-- ===================== PRORROGAÇÃO ===================== -->
+  <section class="topico" id="prorrogacao" aria-labelledby="h-pro">
+    <h2 id="h-pro"><span class="q">Quero pedir</span> prorrogação de prazo</h2>
+    <p class="resumo">Se não conseguir qualificar ou defender dentro do prazo, é possível pedir prorrogação ao Colegiado. O pedido deve ser feito com antecedência e com justificativa e cronograma.</p>
+
+    <h3>Quando pedir</h3>
+    <p>Até <strong>60 dias antes do prazo máximo da defesa</strong>: faça o pedido com, no mínimo, 60 dias de antecedência. Use a <a href="#calculadora">calculadora</a> para saber a sua data.</p>
+
+    <h3>O que o pedido precisa conter</h3>
+    <ul class="check">
+      <li><strong>Razões amplamente justificadas.</strong></li>
+      <li><strong>Cronograma detalhado</strong> que mostre ser viável concluir o curso e defender a tese dentro do prazo pedido.</li>
+    </ul>
+
+    <h3>Como funciona</h3>
+    <ol class="passos">
+      <li><strong>Converse com o orientador</strong> e defina o novo prazo e o cronograma.</li>
+      <li><strong>Faça o pedido à Coordenação, pelo SEI</strong>, com a justificativa e o cronograma.</li>
+      <li><strong>O Colegiado analisa</strong> o pedido em reunião e decide. Acompanhe pelo processo.</li>
+    </ol>
+    <div class="destaque"><p><strong>Atenção:</strong> ultrapassar o prazo máximo do curso sem prorrogação é motivo de desligamento.</p></div>
+    <p class="base">Base legal: Regimento Interno, Art. 42, §§ 1º e 2º, e Art. 43, VI.</p>
+  </section>
+
+  <!-- ===================== TRANCAMENTO ===================== -->
+  <section class="topico" id="trancamento" aria-labelledby="h-tra">
+    <h2 id="h-tra"><span class="q">Quero pedir</span> trancamento</h2>
+    <p class="resumo">Há dois casos: trancar uma <strong>disciplina</strong> e trancar o <strong>curso</strong>. Os dois dependem da anuência do orientador e de decisão do Colegiado.</p>
+
+    <h3>Trancar uma disciplina</h3>
+    <ul class="check">
+      <li>Peça à Coordenação, <strong>com a anuência do orientador</strong>.</li>
+      <li>Só é possível enquanto você <strong>não tiver concluído 25%</strong> do desenvolvimento da disciplina, dentro do calendário acadêmico. <span class="art">Art. 35</span></li>
+      <li>O trancamento de uma disciplina é permitido <strong>uma única vez</strong> durante o curso. <span class="art">Res. CONSU 50, Art. 28, § 2º</span></li>
+    </ul>
+
+    <h3>Trancar o curso</h3>
+    <ul class="check">
+      <li>Só é possível <strong>a partir do segundo semestre letivo</strong> do curso.</li>
+      <li>Por <strong>6 meses</strong>, com <strong>uma única renovação</strong> por igual período no doutorado (até 12 meses no total).</li>
+      <li>Pedido pelo <strong>SEI</strong>, com requerimento específico (modelo na <a href="https://www3.ufac.br/ppg/ppgciam/documentos" target="_blank" rel="noopener">página de documentos do Programa</a>), justificativa e anuência do orientador. O Colegiado decide.</li>
+      <li>Terminado o período, <strong>peça formalmente o reingresso</strong> (ou a continuidade). Se não pedir, você entra em processo de jubilamento.</li>
+    </ul>
+    <div class="atencao"><p><strong>E o prazo do curso?</strong> O período de trancamento <strong>conta</strong> no prazo máximo do curso. A única exceção é a <strong>licença-maternidade</strong>.</p></div>
+    <p class="base">Base legal: Regimento Interno, Arts. 35 e 36 (§ 2º) e Art. 7º, XIII; Resolução CONSU nº 50, Art. 28.</p>
+  </section>
+
+  <!-- ===================== APROVEITAMENTO ===================== -->
+  <section class="topico" id="aproveitamento" aria-labelledby="h-apr">
+    <h2 id="h-apr"><span class="q">Quero pedir</span> aproveitamento de créditos</h2>
+    <p class="resumo">Disciplinas já cursadas em outro mestrado ou doutorado podem ser aproveitadas, até <strong>24 créditos</strong>, se cumprirem as condições abaixo. Quem decide é o Colegiado.</p>
+
+    <h3>Condições</h3>
+    <ul class="check">
+      <li>Disciplina de <strong>mestrado ou doutorado</strong> (stricto sensu) de programa do Sistema Nacional de Pós-Graduação.</li>
+      <li>O programa de origem deve ter <strong>conceito CAPES igual ou superior</strong> ao do nosso Programa.</li>
+      <li>Conclusão há <strong>no máximo 6 anos</strong> da data do pedido.</li>
+      <li><strong>Carga horária igual ou superior</strong> à da disciplina do Programa.</li>
+      <li><strong>Conteúdo programático igual ou superior a 75%</strong> da disciplina do Programa.</li>
+      <li>Conceito <strong>A ou B</strong> na disciplina cursada (conforme o requerimento do Programa).</li>
+      <li>Só <strong>disciplinas</strong> podem ser aproveitadas, até <strong>24 créditos</strong> no doutorado. Atividades complementares não são aproveitadas.</li>
+      <li><strong>Não é automático.</strong> O Colegiado analisa se a disciplina é pertinente para a sua formação, a sua linha de pesquisa e a tese, mesmo que o programa de origem tenha conceito igual ou superior.</li>
+    </ul>
+
+    <h3>Documentos</h3>
+    <ul class="check">
+      <li>Histórico escolar ou declaração da coordenação do programa de origem, com <strong>conceito e frequência</strong>.</li>
+      <li><strong>Ementa</strong> de cada disciplina, assinada pelo coordenador do programa de origem.</li>
+      <li>Requerimento de <strong>Aproveitamento de Créditos</strong> do Programa (modelo na <a href="https://www3.ufac.br/ppg/ppgciam/documentos" target="_blank" rel="noopener">página de documentos do Programa</a>), preenchido: disciplina cursada × disciplina do Programa pretendida.</li>
+    </ul>
+
+    <h3>Como pedir</h3>
+    <ol class="passos">
+      <li><strong>Reúna os documentos</strong> e peça a anuência do orientador.</li>
+      <li><strong>Envie pelo SEI</strong> à Coordenação.</li>
+      <li><strong>O Colegiado analisa</strong> e dá o parecer (deferido ou indeferido) para cada disciplina.</li>
+    </ol>
+    <div class="dica"><p><strong>Cursou como aluno especial no Programa?</strong> Os créditos de disciplinas em que foi aprovado podem ser aproveitados, e têm validade de <strong>2 anos</strong> para esse fim. <span class="art">Art. 39, §§ 1º e 2º</span></p></div>
+    <p class="base">Base legal: Regimento Interno, Arts. 7º, III, 39 e 54, §§ 1º e 2º; Normativa Interna PPGCIAM nº 01/2026, Art. 6º, §§ 2º a 4º e 6º.</p>
+  </section>
+
+  <!-- ===================== PROFICIÊNCIA ===================== -->
+  <section class="topico" id="proficiencia" aria-labelledby="h-prof">
+    <h2 id="h-prof"><span class="q">Quero saber sobre</span> a proficiência em língua estrangeira</h2>
+    <p class="resumo">Para receber o título de Doutor, você precisa ser considerado <strong>aprovado</strong> em exame de proficiência em uma língua estrangeira <strong>diferente da utilizada no mestrado</strong>.</p>
+    <ul class="check">
+      <li><strong>Não há nota mínima</strong> definida: o que se exige é o resultado <strong>APROVADO</strong> no exame que você realizar.</li>
+      <li><strong>Guarde o comprovante</strong> da aprovação e entregue-o à Secretaria. O registro da prova de proficiência precisa constar do histórico escolar na hora de pedir o diploma.</li>
+      <li>Para saber como e quando realizar o exame, ou qual língua vale no seu caso, fale com a Secretaria: <a href="mailto:ppgciam@ufac.br">ppgciam@ufac.br</a>.</li>
+    </ul>
+    <p class="base">Base legal: Regimento Interno, Art. 75, III; Resolução CONSU nº 50, Art. 26; Instrução Normativa NURCA nº 03/2025, Art. 3º.</p>
+  </section>
+
+  <!-- ===================== SEMINÁRIO ===================== -->
+  <section class="topico" id="seminario" aria-labelledby="h-sem">
+    <h2 id="h-sem"><span class="q">Quero saber sobre</span> o Seminário Anual</h2>
+    <p class="resumo">Todo ano o Programa realiza o Seminário de Acompanhamento Discente. A participação é <strong>obrigatória</strong> para os discentes regularmente matriculados: você apresenta o andamento da sua pesquisa e das demais atividades do período.</p>
+
+    <h3>Como funciona</h3>
+    <ul class="check">
+      <li>A apresentação no Seminário <strong>substitui o relatório anual de atividades</strong>, para fins de acompanhamento interno do Programa. Relatórios exigidos pela Ufac, por agências de fomento ou por normas superiores continuam sendo devidos.</li>
+      <li>Uma <strong>comissão designada pelo Colegiado</strong> avalia o cumprimento do cronograma, o desenvolvimento da pesquisa, a produção acadêmico-científica e a participação nas atividades previstas.</li>
+      <li>Os <strong>critérios, prazos, composição da comissão e procedimentos</strong> são aprovados pelo Colegiado e divulgados aos discentes antes do Seminário. Acompanhe os avisos do Programa.</li>
+    </ul>
+
+    <h3>Bolsistas e não bolsistas</h3>
+    <ul>
+      <li><strong>Bolsistas:</strong> a participação e o desempenho satisfatório são critérios para manter ou renovar a bolsa. Ausência injustificada ou desempenho insatisfatório pode levar à não renovação ou ao cancelamento da bolsa, sempre com direito a justificativa, contraditório e ampla defesa, em decisão fundamentada do Colegiado registrada em ata.</li>
+      <li><strong>Não bolsistas:</strong> a ausência injustificada ou o desempenho insatisfatório é acompanhado pela Coordenação e pelo orientador e não é, por si só, motivo de desligamento.</li>
+    </ul>
+    <p class="base">Base legal: Normativa Interna PPGCIAM nº 01/2026, Art. 7º.</p>
+  </section>
+
+  <!-- ===================== DIPLOMA ===================== -->
+  <section class="topico" id="diploma" aria-labelledby="h-dip">
+    <h2 id="h-dip"><span class="q">Quero receber</span> o meu diploma</h2>
+    <p class="resumo">Terminou tudo? Depois que a tese foi aprovada, a versão final foi entregue e o Colegiado homologou a defesa, <strong>você abre um processo no SEI</strong> pedindo o diploma. A Coordenação completa o processo e o envia à Pró-Reitoria de Pós-Graduação, que o encaminha ao NURCA, o setor que emite o diploma.</p>
+
+    <h3>Antes de pedir, confira se está tudo cumprido</h3>
+    <ul class="check">
+      <li><strong>Créditos</strong> integralizados, inclusive os 8 de atividades complementares.</li>
+      <li><strong>Qualificação</strong> aprovada.</li>
+      <li><strong>Proficiência</strong> em língua estrangeira aprovada.</li>
+      <li><strong>Tese aprovada</strong> pela banca, com a ata de defesa assinada por todos os membros.</li>
+      <li><strong>Versão final</strong> em PDF entregue pelo SEI, em até 45 dias da defesa, com o <strong>comprovante de submissão do artigo</strong>. Sem ele, não há diploma.</li>
+      <li><strong>Ficha catalográfica</strong> da Biblioteca incluída na versão final da tese, que também deve ter todas as assinaturas cabíveis.</li>
+      <li><strong>Obrigações em dia</strong> na universidade (livros e equipamentos emprestados, por exemplo).</li>
+      <li><strong>Homologação</strong> da tese pelo Colegiado, em reunião. A Coordenação cuida dessa etapa.</li>
+    </ul>
+
+    <h3>Passo a passo</h3>
+    <ol class="passos">
+      <li><strong>Você abre o processo no SEI</strong>, como usuário externo, direcionado à Coordenação do curso, e anexa:
+        <ul>
+          <li>documento de identidade ou equivalente, se houve atualização depois da matrícula;</li>
+          <li>comprovante de <strong>nada consta</strong> emitido pela Biblioteca Central da Ufac;</li>
+          <li>a <strong>versão final da tese</strong>, em PDF, já com <strong>todas as assinaturas cabíveis</strong> e com a <strong>ficha catalográfica</strong> emitida pela Biblioteca.</li>
+        </ul>
+      </li>
+      <li><strong>A Coordenação completa o processo</strong> com:
+        <ul>
+          <li>ofício descrevendo a documentação anexada;</li>
+          <li>histórico escolar integralizado, com notas, conceitos ou créditos lançados e as observações obrigatórias: registro da prova de proficiência, título da tese, área de concentração, nome do orientador, data da defesa, data da qualificação e membros da banca;</li>
+          <li>ata da defesa, assinada por todos os membros da banca;</li>
+          <li>ata do Colegiado que homologa a defesa ou a tese.</li>
+        </ul>
+        Depois, envia o processo à Pró-Reitoria de Pós-Graduação, que o encaminha ao NURCA.
+      </li>
+      <li><strong>Aguarde a emissão.</strong> O diploma fica disponível em até <strong>60 dias</strong> depois que o processo chega à Coordenadoria de Diplomas e Certificados. Havendo necessidade, o prazo pode ser prorrogado por igual período.</li>
+      <li><strong>Retire o diploma</strong> na Coordenadoria de Diplomas e Certificados, com um documento de identificação. Se não puder ir, uma pessoa autorizada pode retirar, levando uma autorização assinada por você e cópia dos documentos de identificação de vocês dois.</li>
+    </ol>
+
+    <div class="atencao">
+      <p><strong>Cuidado:</strong> processos em desacordo com a norma do NURCA são devolvidos. Confira cada documento antes de enviar. O NURCA pode pedir documentos complementares e é <strong>sua responsabilidade</strong> manter seus dados pessoais atualizados no cadastro da universidade.</p>
+    </div>
+
+    <details class="faq"><summary>Perdi, danifiquei ou fui roubado: como peço a segunda via?</summary><div class="r">
+      <p>Abra um processo no SEI (www.ufac.br/sei) com os dados do curso (regular ou de programa de interiorização), o número de matrícula, o campus em que cursou e a data da colação de grau (ainda que aproximada). Anexe:</p>
+      <ul>
+        <li>a justificativa do pedido (perda, extravio, roubo etc.) com o <strong>Boletim de Ocorrência</strong> que indique o documento como objeto extraviado;</li>
+        <li>o comprovante de pagamento da taxa do serviço (peça a GRU por e-mail a diploma.nurca@ufac.br, informando nome completo e CPF);</li>
+        <li>se possível, cópia do diploma extraviado;</li>
+        <li>se houve alteração de dados pessoais, o RG atualizado e, no caso de diploma físico, a devolução da primeira via ao NURCA.</li>
+      </ul>
+      <span class="art">IN NURCA 03/2025, Art. 5º</span>
+    </div></details>
+
+    <p class="base">Base legal: Regimento Interno, Arts. 74 a 76; Instrução Normativa NURCA nº 03/2025, Arts. 2º, 3º e 5º a 10. A exigência de assinaturas e de ficha catalográfica na versão final é o procedimento adotado pela Secretaria.</p>
+  </section>
+
+  <!-- ===================== DESLIGAMENTO ===================== -->
+  <section class="topico" id="desligamento" aria-labelledby="h-des">
+    <h2 id="h-des"><span class="q">Quero evitar</span> o desligamento</h2>
+    <p class="resumo">O Colegiado pode desligar o discente nas situações abaixo. Conhecê-las ajuda a evitar o risco.</p>
+
+    <ul class="check">
+      <li>Duas <strong>reprovações em disciplinas</strong> ao longo do curso.</li>
+      <li><strong>Não efetivar a matrícula</strong> nos termos do Regimento (inclusive a renovação semestral).</li>
+      <li><strong>Não fazer a qualificação</strong> no prazo.</li>
+      <li><strong>Reprovação na pré-qualificação</strong>.</li>
+      <li><strong>Duas reprovações</strong> na qualificação.</li>
+      <li><strong>Duas reprovações</strong> na defesa da tese (ou não entregar a nova versão no prazo).</li>
+      <li><strong>Ultrapassar o prazo máximo</strong> do curso (48 meses), sem prorrogação.</li>
+      <li><strong>Violar princípios éticos</strong> (plágio, omissão de informações pertinentes ao Programa, fraude e outras condutas que desabonem a conduta acadêmica e científica).</li>
+      <li><strong>Causar perdas ou danos</strong> ao patrimônio da Ufac ou de instituições conveniadas.</li>
+    </ul>
+
+    <h3>Se isso acontecer</h3>
+    <ul>
+      <li>O desligamento é registrado em ata e <strong>comunicado a você pelo SEI</strong>.</li>
+      <li>Você tem <strong>15 dias corridos</strong>, a partir do comunicado, para apresentar <strong>recurso</strong>. A falta de conhecimento do comunicado e a consequente perda do prazo não são de responsabilidade do Programa.</li>
+      <li>Quem desiste ou abandona o curso <strong>não tem direito de retorno</strong>: só pode voltar passando em novo processo seletivo, depois de 2 anos do abandono ou do jubilamento.</li>
+    </ul>
+    <div class="dica"><p><strong>Dica:</strong> acompanhe o SEI com frequência. É por lá que chegam as comunicações oficiais.</p></div>
+    <p class="base">Base legal: Regimento Interno, Arts. 43 e 60, VIII.</p>
+  </section>
+
+  <h2 class="quero" style="margin-top:48px">Dúvidas rápidas</h2>
+  <details class="faq"><summary>Posso defender antes dos 36 meses?</summary><div class="r">Não. A duração mínima do curso é de 36 meses, contados da primeira matrícula. <span class="art">Art. 41</span></div></details>
+  <details class="faq"><summary>Posso ter mais de um professor da Ufac na banca?</summary><div class="r">Além do orientador, a banca pode ter no máximo 1 titular vinculado à Ufac. Os demais titulares devem ser externos. A regra vale para a pré-qualificação, a qualificação e a defesa, e o Colegiado aprova a composição. <span class="art">Normativa 01/2026, Art. 4º</span></div></details>
+  <details class="faq"><summary>A pré-qualificação reprovada dá nova chance?</summary><div class="r">Não. O Regimento diz que o aluno reprovado na pré-qualificação é desligado. Na qualificação, há uma nova oportunidade, em até 60 dias. <span class="art">Arts. 60, VIII, e 65</span></div></details>
+  <details class="faq"><summary>Quanto tempo antes devo mandar o texto à banca?</summary><div class="r">Pré-qualificação: 10 dias. Qualificação: 15 dias. Para a defesa, o requerimento deve ser feito pelo SEI com 30 dias de antecedência. <span class="art">Arts. 60, 61 e 68</span></div></details>
+  <details class="faq"><summary>A banca pode ser feita por videoconferência?</summary><div class="r">Sim, nas três etapas (pré-qualificação, qualificação e defesa), desde que a sessão remota seja síncrona (ao vivo). <span class="art">Arts. 60, 65 e 71</span></div></details>
+  <details class="faq"><summary>Posso ter bolsa?</summary><div class="r">Ser admitido no Programa não garante bolsa. Quando houver bolsas, a distribuição segue as normas das agências de fomento e da PROPEG e os critérios da Comissão de Bolsas. <span class="art">Art. 37</span></div></details>
+  <details class="faq"><summary>Quantos orientandos um professor pode ter?</summary><div class="r">Até 6 orientandos ao mesmo tempo para professor permanente e até 3 para professor colaborador, salvo manifestação favorável do Colegiado. <span class="art">Art. 44, §§ 3º e 4º</span></div></details>
+  <details class="faq"><summary>Posso trocar de orientador?</summary><div class="r">O Colegiado pode autorizar a substituição, a pedido do orientando ou do orientador. O aceite do novo orientador é feito por requerimento formal à Coordenação, com justificativas. <span class="art">Art. 44, § 1º</span></div></details>
+
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <h2>Documentos consultados</h2>
+    <ul>
+      <li>Regimento Interno do Programa de Pós-Graduação em Sanidade e Produção Animal Sustentável na Amazônia Ocidental (PPGESPA), publicado em 20/12/2021, que permanece vigente para o PPGCIAM.</li>
+      <li>Normativa Interna PPGCIAM nº 01/2026: normas complementares ao Regimento Interno.</li>
+      <li>Regimento Geral dos Cursos de Pós-Graduação da Ufac (Resolução CONSU nº 50).</li>
+      <li>Instrução Normativa nº 01/2018 do Colegiado: atividades complementares do Doutorado (17/07/2018).</li>
+      <li>Instrução Normativa NURCA nº 03/2025: expedição de diplomas de pós-graduação (06/10/2025).</li>
+      <li>Formulários do Programa, disponíveis na <a href="https://www3.ufac.br/ppg/ppgciam/documentos" target="_blank" rel="noopener">página de documentos do Programa</a>.</li>
+    </ul>
+    <p>Formulários e modelos: <a href="https://www3.ufac.br/ppg/ppgciam/documentos" target="_blank" rel="noopener">página de documentos do Programa</a>.</p>
+    <p>Encontrou um erro ou uma regra desatualizada? Escreva para <a href="mailto:ppgciam@ufac.br">ppgciam@ufac.br</a>.</p>
+    <a class="topo-link" href="#indice" style="color:#fff">↑ Voltar ao início</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---------- tabelas empilhadas no celular ----------
+  document.documentElement.classList.add('js');
+  document.querySelectorAll('table.stack').forEach(function(t){
+    var h=[].map.call(t.querySelectorAll('thead th'),function(x){return x.textContent;});
+    t.querySelectorAll('tbody tr').forEach(function(tr){[].forEach.call(tr.children,function(c,i){c.setAttribute('data-label',h[i]||'');});});
+  });
+
+  // ---------- busca nos cartões ----------
+  var q=document.getElementById('q'), lis=document.querySelectorAll('#cards li'), vazio=document.getElementById('semresultado');
+  function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+  if(q){q.addEventListener('input',function(){
+    var t=norm(q.value.trim()), n=0;
+    lis.forEach(function(li){
+      var txt=norm(li.textContent+' '+(li.getAttribute('data-k')||''));
+      var ok=!t||txt.indexOf(t)>-1; li.hidden=!ok; if(ok)n++;
+    });
+    vazio.style.display=n?'none':'block';
+  });}
+
+  // ---------- calculadora ----------
+  function parse(v){ if(!v) return null; var p=v.split('-'); return new Date(+p[0],+p[1]-1,+p[2]); }
+  function addMonths(d,m){
+    var t=new Date(d.getFullYear(),d.getMonth()+m,1);
+    var ult=new Date(t.getFullYear(),t.getMonth()+1,0).getDate();
+    return new Date(t.getFullYear(),t.getMonth(),Math.min(d.getDate(),ult));
+  }
+  function addDays(d,n){return new Date(d.getFullYear(),d.getMonth(),d.getDate()+n);}
+  function fmt(d){
+    var dd=('0'+d.getDate()).slice(-2), mm=('0'+(d.getMonth()+1)).slice(-2);
+    var sem=['dom','seg','ter','qua','qui','sex','sáb'][d.getDay()];
+    return dd+'/'+mm+'/'+d.getFullYear()+' ('+sem+')';
+  }
+  function hojeZero(){var h=new Date();return new Date(h.getFullYear(),h.getMonth(),h.getDate());}
+  function situ(d){
+    var dias=Math.round((d-hojeZero())/86400000);
+    if(dias<0) return '<span class="st venc">já passou</span>';
+    if(dias<=30) return '<span class="st breve">faltam '+dias+' dia'+(dias===1?'':'s')+'</span>';
+    return '<span class="st ok">faltam '+dias+' dias</span>';
+  }
+  var f=document.getElementById('formCalc'), out=document.getElementById('resultado');
+  if(f){f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var mat=parse(document.getElementById('cMat').value);
+    if(!mat||isNaN(mat)||mat.getFullYear()<2010){
+      out.innerHTML='<p class="erro" role="alert">Informe uma data de matrícula válida.</p>'; return;
+    }
+    var lic=Math.max(0,parseInt(document.getElementById('cLic').value,10)||0);
+    var pro=Math.max(0,parseInt(document.getElementById('cPro').value,10)||0);
+    var dq=parse(document.getElementById('cDtQ').value), dd=parse(document.getElementById('cDtD').value);
+
+    var pre=addMonths(mat,5);
+    var qual=addMonths(mat,40+lic);
+    var def=addMonths(mat,48+lic+pro);
+    var min=addMonths(mat,36);
+    var pedir=addDays(def,-60);
+
+    var linhas=[
+      ['Pré-qualificação','até',pre,'5 meses da matrícula (Art. 60)'],
+      ['Qualificação','até',qual,'40 meses da matrícula'+(lic?' + '+lic+' de licença':'')+' (Art. 61)'],
+      ['Pedir prorrogação ao Colegiado','até',pedir,'60 dias antes do prazo máximo da defesa (Art. 42)'],
+      ['Defesa: prazo máximo','até',def,'48 meses'+(lic||pro?' + '+(lic+pro)+' de licença/prorrogação':'')+' (Art. 42)']
+    ];
+    var extra=[
+      ['Defesa: a partir de',min,'duração mínima de 36 meses (Art. 41)']
+    ];
+    if(dq){ linhas.push(['Solicitar a banca da qualificação','até',addDays(dq,-15),'15 dias antes de '+fmt(dq)+' (Art. 64)']); }
+    if(dd){
+      linhas.push(['Requerer a defesa pelo SEI','até',addDays(dd,-30),'30 dias antes de '+fmt(dd)+' (Art. 68)']);
+      linhas.push(['Entregar a versão final','até',addDays(dd,45),'45 dias depois de '+fmt(dd)+' (Art. 73)']);
+    }
+    var html='<div class="tab"><table><caption>Seus prazos (matrícula em '+fmt(mat)+')</caption><thead><tr><th scope="col">Etapa</th><th scope="col">Data</th><th scope="col">Situação hoje</th><th scope="col">Como foi calculado</th></tr></thead><tbody>';
+    linhas.forEach(function(l){ html+='<tr><th scope="row">'+l[0]+'</th><td>'+l[1]+' <strong>'+fmt(l[2])+'</strong></td><td>'+situ(l[2])+'</td><td>'+l[3]+'</td></tr>'; });
+    extra.forEach(function(l){ html+='<tr><th scope="row">'+l[0]+'</th><td><strong>'+fmt(l[1])+'</strong></td><td>'+(l[1]>hojeZero()?'<span class="st breve">ainda não</span>':'<span class="st ok">já pode</span>')+'</td><td>'+l[2]+'</td></tr>'; });
+    html+='</tbody></table></div>';
+    if(dd && dd>def){ html+='<div class="destaque"><p>A data pretendida para a defesa está <strong>depois do prazo máximo</strong>. Veja como <a href="#prorrogacao">pedir prorrogação</a>.</p></div>'; }
+    if(dd && dd<min){ html+='<div class="destaque"><p>A data pretendida para a defesa é <strong>anterior à duração mínima</strong> de 36 meses (Art. 41).</p></div>'; }
+    if(dq && dq>qual){ html+='<div class="destaque"><p>A data pretendida para a qualificação está <strong>depois do prazo</strong>. Procure o orientador e a Secretaria.</p></div>'; }
+    out.innerHTML=html;
+  });}
+})();
+</script>
+</body>
+</html>
