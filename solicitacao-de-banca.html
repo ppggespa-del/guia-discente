@@ -126,6 +126,11 @@ footer.rod{border-top:1px solid var(--linha);margin-top:44px;padding:22px 0 40px
   .frame>thead{display:table-header-group}
   .frame>tfoot{display:table-footer-group}
 }
+.vincajuda{margin:0 0 14px;border:1px solid var(--linha);border-radius:8px;padding:10px 14px;background:var(--fundo2);font-size:.95rem}
+.vincajuda summary{cursor:pointer;font-weight:700;color:var(--azul-esc)}
+.vincajuda ul{margin:8px 0 0;padding-left:20px}
+.vincajuda li+li{margin-top:4px}
+.g2 td .vf{display:block;font-size:.88em;margin-top:2px}
 </style>
 </head>
 <body>
@@ -194,6 +199,13 @@ footer.rod{border-top:1px solid var(--linha);margin-top:44px;padding:22px 0 40px
     <section class="passo" id="s5" hidden aria-labelledby="h5p">
       <h2 id="h5p"><span class="num">5</span>Membros da banca examinadora</h2>
       <p style="margin:0 0 14px;color:var(--suave);font-size:.95rem">Escreva o nome completo, <strong>sem abreviações e sem títulos</strong> (como “Dr.” ou “Profa.”). Os membros devem ter título de Doutor. Já deixei as funções mais comuns; ajuste, acrescente ou remova conforme a sua banca.</p>
+      <details class="vincajuda"><summary>Como escolher o vínculo de cada membro</summary>
+        <ul>
+          <li><strong>Interno à UFAC e ao Programa:</strong> docente da UFAC que faz parte do corpo docente do PPGCIAM.</li>
+          <li><strong>Interno à UFAC, externo ao Programa:</strong> docente ou pesquisador da UFAC que não faz parte do corpo docente do PPGCIAM.</li>
+          <li><strong>Externo à UFAC, interno ao Programa:</strong> docente de outra instituição que faz parte do corpo docente do PPGCIAM. Para a conferência, é tratado como interno.</li>
+          <li><strong>Externo à UFAC e ao Programa:</strong> pessoa de outra instituição, sem vínculo com o Programa.</li>
+        </ul></details>
       <div id="membros"></div>
       <button type="button" class="btn sec" id="addM">+ Adicionar membro</button>
       <div class="conf" id="conf" aria-live="polite"><h3>Conferência automática</h3><ul id="confLista"></ul></div>
@@ -247,11 +259,16 @@ var FUNCOES=[
   ["ori","Orientador (Presidente)"],
   ["coo","Coorientador"],
   ["cooP","Coorientador (presidente, na ausência do orientador)"],
-  ["int","Membro interno"],
-  ["ext","Membro externo"],
-  ["supInt","Membro interno – Suplente"],
-  ["supExt","Membro externo – Suplente"]
+  ["tit","Membro titular"],
+  ["sup","Suplente"]
 ];
+var VINCS=[
+  ["UP","Interno à UFAC e ao Programa"],
+  ["U","Interno à UFAC, externo ao Programa"],
+  ["P","Externo à UFAC, interno ao Programa"],
+  ["E","Externo à UFAC e ao Programa"]
+];
+var VINCL={};VINCS.forEach(function(x){VINCL[x[0]]=x[1];});
 var ROTULO={};FUNCOES.forEach(function(x){ROTULO[x[0]]=x[1];});
 var MESES=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
 
@@ -261,8 +278,8 @@ var REGRAS={
     D:["Fazer a pré-qualificação em até 5 meses da data de matrícula (art. 60, I).","Solicitar via SEI, com o projeto em anexo (art. 60, I).","Entregar o projeto (PDF e Word) aos membros da banca com antecedência mínima de 10 dias (art. 60, II).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 60, parágrafo único)."]
   },
   qual:{
-    M:["Fazer a qualificação em até 20 meses da data de matrícula, após aprovação na pré-qualificação (art. 56, I).","Protocolar a solicitação, em formulário específico via SEI, no mínimo 15 dias antes da data sugerida (art. 57 e art. 58, parágrafo único).","Entregar o texto (PDF e Word) aos membros da banca com antecedência mínima de 15 dias (art. 56, III).","Banca de 4 doutores: orientador ou coorientador, 1 membro interno, 1 membro externo e 1 suplente (art. 58).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 59, parágrafo único)."],
-    D:["Fazer a qualificação em até 40 meses da data de matrícula, após aprovação na pré-qualificação (art. 61, I).","Protocolar a solicitação, em formulário específico via SEI, no mínimo 15 dias antes da data sugerida (art. 63 e art. 64, parágrafo único).","Entregar o texto (PDF e Word) aos membros da banca com antecedência mínima de 15 dias (art. 61, III).","Banca de 4 doutores: orientador ou coorientador, 1 membro interno, 1 membro externo e 1 suplente (art. 64).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 65, parágrafo único)."]
+    M:["Fazer a qualificação em até 20 meses da data de matrícula, após aprovação na pré-qualificação (art. 56, I).","Protocolar a solicitação, em formulário específico via SEI, no mínimo 15 dias antes da data sugerida (art. 57 e art. 58, parágrafo único).","Entregar o texto (PDF e Word) aos membros da banca com antecedência mínima de 15 dias (art. 56, III).","Banca de 4 doutores: orientador ou coorientador, 1 membro interno ao Programa, 1 membro externo ao Programa e 1 suplente (art. 58).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 59, parágrafo único)."],
+    D:["Fazer a qualificação em até 40 meses da data de matrícula, após aprovação na pré-qualificação (art. 61, I).","Protocolar a solicitação, em formulário específico via SEI, no mínimo 15 dias antes da data sugerida (art. 63 e art. 64, parágrafo único).","Entregar o texto (PDF e Word) aos membros da banca com antecedência mínima de 15 dias (art. 61, III).","Banca de 4 doutores: orientador ou coorientador, 1 membro interno ao Programa, 1 membro externo ao Programa e 1 suplente (art. 64).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 65, parágrafo único)."]
   },
   def:{
     M:["Requerer a defesa via SEI, com no mínimo 30 dias de antecedência da data prevista (art. 68).","Banca de 3 membros titulares e 1 suplente, sem contar o coorientador (salvo falta do orientador), com ao menos 1 membro de fora do corpo docente do Programa; o orientador preside (art. 70, § 1º).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 71, parágrafo único)."],
@@ -304,19 +321,26 @@ function telFmt(s){var d=(s||"").replace(/\D/g,"");
   return (s||"").trim();}
 function emailOk(s){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((s||"").trim());}
 function isUfac(s){return /\bufac\b|universidade federal do acre/i.test(s||"");}
+/* Interpretação adotada pelo Programa: docente de outra instituição, credenciado no Programa (vínculo P), conta como interno
+   para a Normativa 01/2026, art. 4º, e para o RI, art. 70, § 2º. Para a leitura literal (só vínculo com a UFAC), troque por false. */
+var P_CONTA_COMO_INTERNO=true;
+function intProg(m){return m.vinc==="UP"||m.vinc==="P";}
+function extProg(m){return m.vinc==="U"||m.vinc==="E";}
+function intLegal(m){return m.vinc==="UP"||m.vinc==="U"||(P_CONTA_COMO_INTERNO&&m.vinc==="P");}
+function extLegal(m){return m.vinc==="E"||(!P_CONTA_COMO_INTERNO&&m.vinc==="P");}
 function nomeAbrev(s){return /(^|\s)(dr|dra|prof|profa|prof\.|profº|drº)\.?(\s|$)/i.test(s)||/(^|\s)[A-Za-zÀ-ÿ]\.(\s|$)/.test(s);}
 
 /* ---------- elenco inicial ---------- */
 function elencoPadrao(){
   var e=st.etapa,n=st.nivel;if(!e||!n)return [];
   var f;
-  if(e==="pre")f=["ori","int","ext"];
-  else if(e==="qual")f=["ori","int","ext","supExt"];
-  else if(n==="M")f=["ori","int","ext","supExt"];
-  else f=["ori","int","ext","ext","ext","supInt","supExt"];
-  return f.map(function(x){return novoMembro(x);});
+  if(e==="pre")f=["ori","tit","tit"];
+  else if(e==="qual")f=["ori","tit","tit","sup"];
+  else if(n==="M")f=["ori","tit","tit","sup"];
+  else f=["ori","tit","tit","tit","tit","sup","sup"];
+  return f.map(function(x){var m=novoMembro(x);if(x==="ori")m.vinc="UP";return m;});
 }
-function novoMembro(f){return {nome:"",inst:"",funcao:f||"ext",cpf:"",semcpf:false,tel:"",email:""};}
+function novoMembro(f){return {nome:"",inst:"",funcao:f||"tit",vinc:"",cpf:"",semcpf:false,tel:"",email:""};}
 
 /* ---------- interface ---------- */
 function etapaNivel(){
@@ -330,7 +354,7 @@ function atualizaEscolha(){
   var box=$("regras");
   if(ok){
     var li=REGRAS[st.etapa][st.nivel].map(function(t){return "<li>"+esc(t)+"</li>";}).join("");
-    var extra="<li>A composição da banca é submetida à apreciação e aprovação do Colegiado, e as bancas devem ter no máximo 1 membro titular da UFAC além do orientador (Normativa 01/2026, art. 4º).</li>";
+    var extra="<li>A composição da banca é submetida à apreciação e aprovação do Colegiado, e as bancas devem ter no máximo 1 membro titular da UFAC além do orientador (Normativa 01/2026, art. 4º). Docente de outra instituição que é credenciado no Programa conta como interno.</li>";
     box.innerHTML="<h3>O que as normas pedem para esta solicitação</h3><ul>"+li+extra+"</ul><p class='fonte'>Artigos do Regimento Interno do Programa (2022), exceto quando indicado.</p>"+
       "<p class='fonte'>Quer calcular seus prazos? Use a calculadora do <a href='"+(st.nivel==="M"?"guia-mestrado.html":"guia-doutorado.html")+"#calculadora' target='_blank' rel='noopener'>Guia do Discente</a>.</p>";
     box.hidden=false;
@@ -341,6 +365,7 @@ function atualizaEscolha(){
   $("e_etapa").style.display="none";$("e_nivel").style.display="none";
 }
 function optHtml(sel){return FUNCOES.map(function(f){return "<option value='"+f[0]+"'"+(f[0]===sel?" selected":"")+">"+esc(f[1])+"</option>";}).join("");}
+function optVinc(sel){return "<option value=''>Selecione o vínculo</option>"+VINCS.map(function(f){return "<option value='"+f[0]+"'"+(f[0]===sel?" selected":"")+">"+esc(f[1])+"</option>";}).join("");}
 function renderMembros(){
   var h="";
   st.membros.forEach(function(m,i){
@@ -349,7 +374,8 @@ function renderMembros(){
     "<div class='campo'><label for='m"+i+"n'>Nome completo (sem abreviações)</label><input type='text' id='m"+i+"n' data-k='nome' data-req='1' value='"+esc(m.nome)+"'><div class='err'>Preencha este campo.</div></div>"+
     "<div class='grid2'>"+
     "<div class='campo'><label for='m"+i+"i'>Instituição (sigla)</label><input type='text' id='m"+i+"i' data-k='inst' data-req='1' placeholder='Ex.: UFAC' value='"+esc(m.inst)+"'><div class='err'>Preencha este campo.</div></div>"+
-    "<div class='campo'><label for='m"+i+"f'>Função na banca</label><select id='m"+i+"f' data-k='funcao'>"+optHtml(m.funcao)+"</select></div></div>"+
+ "<div class='campo'><label for='m"+i+"f'>Função na banca</label><select id='m"+i+"f' data-k='funcao'>"+optHtml(m.funcao)+"</select></div></div>"+
+    "<div class='campo'><label for='m"+i+"v'>Vínculo</label><select id='m"+i+"v' data-k='vinc'>"+optVinc(m.vinc)+"</select><div class='err'>Escolha o vínculo.</div></div>"+
     "<div class='grid3'>"+
     "<div class='campo'><label for='m"+i+"c'>CPF</label><input type='text' inputmode='numeric' id='m"+i+"c' data-k='cpf' data-cpf='1' placeholder='000.000.000-00' value='"+esc(m.cpf)+"'"+(m.semcpf?" disabled":"")+"><div class='err'>Informe o CPF.</div>"+
     "<label class='chk'><input type='checkbox' data-k='semcpf'"+(m.semcpf?" checked":"")+"> Não possui CPF (estrangeiro)</label></div>"+
@@ -361,8 +387,8 @@ function renderMembros(){
 }
 
 /* ---------- conferência ---------- */
-function titulares(){return st.membros.filter(function(m){return ["ori","cooP","int","ext"].indexOf(m.funcao)>-1;});}
-function suplentes(){return st.membros.filter(function(m){return ["supInt","supExt"].indexOf(m.funcao)>-1;});}
+function titulares(){return st.membros.filter(function(m){return ["ori","cooP","tit"].indexOf(m.funcao)>-1;});}
+function suplentes(){return st.membros.filter(function(m){return m.funcao==="sup";});}
 function conferir(){
   var out=[],e=st.etapa,n=st.nivel;
   if(!e||!n){$("confLista").innerHTML="";return [];}
@@ -381,37 +407,43 @@ function conferir(){
   }else{A("info","Informe o dia da banca para conferir a antecedência mínima.");}
   /* banca */
   var T=titulares(),S=suplentes(),M=st.membros;
+  var TT=M.filter(function(m){return m.funcao==="tit";});
   var temOri=M.some(function(m){return m.funcao==="ori"||m.funcao==="cooP";});
   if(!temOri&&!(e==="qual"&&M.some(function(m){return m.funcao==="coo";})))A("warn","Inclua o orientador, que preside a banca.");
+  var vincOk=TT.every(function(m){return !!m.vinc;});
+  if(!vincOk)A("info","Escolha o vínculo de cada membro titular para a conferência completa da banca.");
   if(e==="qual"){
     var falta=[];
     if(!M.some(function(m){return m.funcao==="ori"||m.funcao==="coo"||m.funcao==="cooP";}))falta.push("orientador ou coorientador");
-    if(!M.some(function(m){return m.funcao==="int";}))falta.push("1 membro interno");
-    if(!M.some(function(m){return m.funcao==="ext";}))falta.push("1 membro externo");
+    if(!TT.some(intProg))falta.push("1 membro interno ao Programa");
+    if(!TT.some(extProg))falta.push("1 membro externo ao Programa");
     if(!S.length)falta.push("1 suplente");
     var artq=n==="M"?"art. 58":"art. 64";
     if(falta.length)A("warn","Banca de qualificação incompleta. Faltam: "+falta.join(", ")+" (RI, "+artq+").");
-    else A("ok","Banca com os componentes previstos: orientador ou coorientador, membro interno, membro externo e suplente (RI, "+artq+").");
+    else A("ok","Banca com os componentes previstos: orientador ou coorientador, membro interno ao Programa, membro externo ao Programa e suplente (RI, "+artq+").");
   }else if(e==="def"){
     var rt=n==="M"?3:5,rs=n==="M"?1:2,pa=n==="M"?"§ 1º":"§ 2º";
     if(T.length!==rt)A("warn","A banca tem "+T.length+" titular(es) e o RI prevê "+rt+", sem contar o coorientador (art. 70, "+pa+").");
     else A("ok",rt+" membros titulares, como prevê o RI (art. 70, "+pa+").");
     if(S.length!==rs)A("warn","A banca tem "+S.length+" suplente(s) e o RI prevê "+rs+" (art. 70, "+pa+").");
     else A("ok",rs+" suplente(s), como prevê o RI (art. 70, "+pa+").");
-    var ext=T.filter(function(m){return (m.funcao==="int"||m.funcao==="ext")&&(m.inst||"").trim()&&!isUfac(m.inst);}).length;
     var rx=n==="M"?1:2;
+    var ext=n==="M"?TT.filter(extProg).length:TT.filter(extLegal).length;
     var tx=n==="M"?"de fora do corpo docente do Programa":"de fora do corpo docente da UFAC";
-    if(ext<rx)A("warn","São necessários ao menos "+rx+" membro(s) titular(es) "+tx+"; foram identificados "+ext+" pela instituição informada (RI, art. 70, "+pa+").");
+    if(ext<rx)A("warn","São necessários ao menos "+rx+" membro(s) titular(es) "+tx+"; foram identificados "+ext+" pelo vínculo informado (RI, art. 70, "+pa+").");
     else A("ok","Ao menos "+rx+" membro(s) "+tx+" (RI, art. 70, "+pa+").");
   }else{
     A("info","O Regimento não fixa o número de membros da banca de pré-qualificação. Confirme a composição com o orientador e a Secretaria.");
   }
   /* Normativa art. 4 */
-  var ufac=T.filter(function(m){return (m.funcao==="int"||m.funcao==="ext")&&isUfac(m.inst);}).length;
-  if(ufac>1)A("warn","Há "+ufac+" membros titulares da UFAC além do orientador. A Normativa 01/2026 (art. 4º) admite no máximo 1.");
-  else if(T.length)A("ok","No máximo 1 membro titular da UFAC além do orientador (Normativa 01/2026, art. 4º).");
+  var ufac=TT.filter(intLegal).length;
+  if(ufac>1)A("warn","Há "+ufac+" membros titulares internos (da UFAC ou docentes do Programa) além do orientador. A Normativa 01/2026 (art. 4º) admite no máximo 1.");
+  else if(TT.length&&vincOk)A("ok","No máximo 1 membro titular da UFAC além do orientador (Normativa 01/2026, art. 4º).");
+  if(TT.some(function(m){return m.vinc==="P";}))A("info","Membro “externo à UFAC, interno ao Programa”: conta como interno ao Programa (RI, arts. 58, 64 e 70, § 1º) e, pela interpretação adotada pelo Programa, como "+(P_CONTA_COMO_INTERNO?"interno":"externo à UFAC")+" no art. 4º da Normativa e no art. 70, § 2º do RI.");
   M.forEach(function(m,i){
-    if((m.funcao==="ext"||m.funcao==="supExt")&&isUfac(m.inst))A("warn","Membro "+(i+1)+": função “externo” com instituição UFAC.");
+    var ins=(m.inst||"").trim();
+    if((m.vinc==="P"||m.vinc==="E")&&ins&&isUfac(ins))A("warn","Membro "+(i+1)+": vínculo “externo à UFAC” com instituição UFAC. Confira.");
+    if((m.vinc==="UP"||m.vinc==="U")&&ins&&!isUfac(ins))A("warn","Membro "+(i+1)+": vínculo “interno à UFAC” com instituição “"+ins+"”. Confira.");
     if(m.nome&&nomeAbrev(m.nome))A("warn","Membro "+(i+1)+": escreva o nome completo, sem abreviações nem títulos (Dr., Profa. etc.).");
     if(!m.semcpf&&cpfDigits(m.cpf).length===11&&!cpfOk(m.cpf))A("warn","Membro "+(i+1)+": o CPF informado parece inválido. Confira os números.");
   });
@@ -435,7 +467,7 @@ function validar(){
   st.membros.forEach(function(m,i){
     var root=document.querySelector(".membro[data-i='"+i+"']");
     root.querySelectorAll("[data-k]").forEach(function(el){
-      var k=el.getAttribute("data-k");if(k==="funcao"||k==="semcpf")return;
+      var k=el.getAttribute("data-k");if(k==="vinc"){var bv=el.value==="";marca(el,bv);if(bv)bad.push(el);return;}if(k==="funcao"||k==="semcpf")return;
       var b=false,val=el.value.trim();
       if(k==="cpf")b=!m.semcpf&&val==="";
       else if(k==="email")b=!emailOk(val);
@@ -469,8 +501,8 @@ function gerarDoc(){
   h+=linhaCampo("Horário:",hora);
   h+=linhaCampo("Local:",v("local"));
   h+="</table>";
-  h+="<table class='g g2'><thead><tr><th class='cinza' colspan='3'>MEMBROS DA BANCA EXAMINADORA</th></tr><tr><th style='width:42%'>Nome Completo (Sem abreviações):</th><th style='width:26%'>Instituição (Sigla):</th><th>Função na Banca</th></tr></thead><tbody>";
-  M.forEach(function(m,i){h+="<tr><td>"+(i+1)+". "+esc(m.nome)+"</td><td>"+esc(m.inst)+"</td><td>"+esc(ROTULO[m.funcao])+"</td></tr>";});
+  h+="<table class='g g2'><thead><tr><th class='cinza' colspan='3'>MEMBROS DA BANCA EXAMINADORA</th></tr><tr><th style='width:34%'>Nome Completo (Sem abreviações):</th><th style='width:22%'>Instituição (Sigla):</th><th>Função na Banca / Vínculo</th></tr></thead><tbody>";
+  M.forEach(function(m,i){h+="<tr><td>"+(i+1)+". "+esc(m.nome)+"</td><td>"+esc(m.inst)+"</td><td>"+esc(ROTULO[m.funcao])+"<span class='vf'>"+esc(VINCL[m.vinc]||"")+"</span></td></tr>";});
   h+="</tbody></table>";
   h+="<table class='g g2'><thead><tr><th style='width:7%'></th><th style='width:27%'>CPF:</th><th style='width:26%'>Telefone:</th><th>E-mail:</th></tr></thead><tbody>";
   M.forEach(function(m,i){h+="<tr><td class='n'>"+(i+1)+".</td><td>"+esc(m.semcpf?"Não possui":cpfMask(m.cpf))+"</td><td>"+esc(telFmt(m.tel))+"</td><td style='word-break:break-all'>"+esc(m.email)+"</td></tr>";});
@@ -505,7 +537,7 @@ $("f").addEventListener("input",function(ev){
       m[k]=t.value;
     }
     st.tocou=true;
-    if(k==="funcao"||k==="inst"||k==="semcpf"||k==="cpf"||k==="nome")conferir();
+    if(k==="funcao"||k==="vinc"||k==="inst"||k==="semcpf"||k==="cpf"||k==="nome")conferir();
   }else{conferir();}
 });
 $("f").addEventListener("focusout",function(ev){
@@ -519,7 +551,7 @@ $("f").addEventListener("click",function(ev){
 });
 $("addM").addEventListener("click",function(){
   if(st.membros.length>=10){return;}
-  st.membros.push(novoMembro("ext"));st.tocou=true;renderMembros();conferir();
+  st.membros.push(novoMembro("tit"));st.tocou=true;renderMembros();conferir();
   var ult=document.querySelector(".membro:last-child input");if(ult)ult.focus();
 });
 $("chipMeet").addEventListener("click",function(){$("local").value="Via Google Meet (remota, síncrona)";$("local").classList.remove("inv");});
