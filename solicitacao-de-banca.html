@@ -100,6 +100,7 @@ footer.rod{border-top:1px solid var(--linha);margin-top:44px;padding:22px 0 40px
 .g2 .n{white-space:nowrap}
 .fim{break-inside:avoid}
 .dtl{margin:6mm 0 0}
+.dispmem{margin:3mm 0 0;font-size:.92em;text-align:justify;break-inside:avoid}
 .assin{display:flex;justify-content:space-around;gap:10mm;margin:13mm 0 0;break-inside:avoid}
 .assin div{flex:1;text-align:center;font-weight:700}
 .assin div:before{content:"";display:block;border-top:.7pt solid #000;margin:0 6mm 1.5mm}
@@ -126,6 +127,7 @@ footer.rod{border-top:1px solid var(--linha);margin-top:44px;padding:22px 0 40px
   .frame>thead{display:table-header-group}
   .frame>tfoot{display:table-footer-group}
 }
+.memlab[hidden],#blocoMem[hidden],#dispBox[hidden]{display:none}
 .vincajuda{margin:0 0 14px;border:1px solid var(--linha);border-radius:8px;padding:10px 14px;background:var(--fundo2);font-size:.95rem}
 .vincajuda summary{cursor:pointer;font-weight:700;color:var(--azul-esc)}
 .vincajuda ul{margin:8px 0 0;padding-left:20px}
@@ -203,11 +205,16 @@ footer.rod{border-top:1px solid var(--linha);margin-top:44px;padding:22px 0 40px
         <ul>
           <li><strong>Interno à UFAC e ao Programa:</strong> docente da UFAC que faz parte do corpo docente do PPGCIAM.</li>
           <li><strong>Interno à UFAC, externo ao Programa:</strong> docente ou pesquisador da UFAC que não faz parte do corpo docente do PPGCIAM.</li>
-          <li><strong>Externo à UFAC, interno ao Programa:</strong> docente de outra instituição que faz parte do corpo docente do PPGCIAM. Para a conferência, é tratado como interno.</li>
-          <li><strong>Externo à UFAC e ao Programa:</strong> pessoa de outra instituição, sem vínculo com o Programa.</li>
+          <li><strong>Externo à UFAC, interno ao Programa:</strong> docente de outra instituição que faz parte do corpo docente do PPGCIAM. Não conta como externo para a Normativa 01/2026 (art. 5º, § 1º), pois integra o corpo docente do Programa.</li>
+          <li><strong>Externo à UFAC e ao Programa:</strong> pessoa de outra instituição, sem vínculo com o Programa e sem vínculo funcional com a UFAC. Só este vínculo conta para o mínimo de membros externos da Normativa 01/2026 (arts. 4º e 5º).</li>
         </ul></details>
       <div id="membros"></div>
       <button type="button" class="btn sec" id="addM">+ Adicionar membro</button>
+      <div id="blocoMem" hidden style="margin-top:16px">
+        <label class="chk"><input type="checkbox" id="dispMem"> Solicito dispensa da memória de banca por impedimento de força maior</label>
+        <p style="margin:6px 0 0;color:var(--suave);font-size:.9rem">Em regra, ao menos 1 membro titular da defesa (diverso do orientador e do coorientador) deve ter participado da banca de qualificação. A dispensa só vale para fato imprevisível ou inevitável, alheio à vontade do examinador e comprovado, como doença grave, falecimento ou outro impedimento legal. Agenda e distância não bastam. Quem decide é o Colegiado (Normativa 01/2026, art. 6º, §§ 3º a 5º).</p>
+        <div class="campo" id="dispBox" hidden style="margin-top:10px"><label for="dispTxt">Justificativa do impedimento (anexe a documentação comprobatória ao pedido de defesa no SEI)</label><textarea id="dispTxt" placeholder="Descreva o fato e o examinador afetado."></textarea><div class="err">Preencha a justificativa.</div></div>
+      </div>
       <div class="conf" id="conf" aria-live="polite"><h3>Conferência automática</h3><ul id="confLista"></ul></div>
     </section>
 
@@ -274,16 +281,16 @@ var MESES=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto
 
 var REGRAS={
   pre:{
-    M:["Fazer a pré-qualificação em até 5 meses da data de matrícula (art. 55, I).","Solicitar via SEI, com o pré-projeto em anexo (art. 55, I).","Entregar o pré-projeto (PDF e Word) aos membros da banca com antecedência mínima de 10 dias (art. 55, II).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 55, parágrafo único)."],
-    D:["Fazer a pré-qualificação em até 5 meses da data de matrícula (art. 60, I).","Solicitar via SEI, com o projeto em anexo (art. 60, I).","Entregar o projeto (PDF e Word) aos membros da banca com antecedência mínima de 10 dias (art. 60, II).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 60, parágrafo único)."]
+    M:["Fazer a pré-qualificação em até 5 meses da data de matrícula (art. 55, I).","Solicitar via SEI, com o pré-projeto em anexo (art. 55, I).","Entregar o pré-projeto (PDF e Word) aos membros da banca com antecedência mínima de 10 dias (art. 55, II).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 55, parágrafo único).","Banca com no mínimo 1 membro titular externo à UFAC e ao Programa (Normativa 01/2026, art. 4º)."],
+    D:["Fazer a pré-qualificação em até 5 meses da data de matrícula (art. 60, I).","Solicitar via SEI, com o projeto em anexo (art. 60, I).","Entregar o projeto (PDF e Word) aos membros da banca com antecedência mínima de 10 dias (art. 60, II).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 60, parágrafo único).","Banca com no mínimo 1 membro titular externo à UFAC e ao Programa (Normativa 01/2026, art. 4º)."]
   },
   qual:{
-    M:["Fazer a qualificação em até 20 meses da data de matrícula, após aprovação na pré-qualificação (art. 56, I).","Protocolar a solicitação, em formulário específico via SEI, no mínimo 15 dias antes da data sugerida (art. 57 e art. 58, parágrafo único).","Entregar o texto (PDF e Word) aos membros da banca com antecedência mínima de 15 dias (art. 56, III).","Banca de 4 doutores: orientador ou coorientador, 1 membro interno ao Programa, 1 membro externo ao Programa e 1 suplente (art. 58).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 59, parágrafo único)."],
-    D:["Fazer a qualificação em até 40 meses da data de matrícula, após aprovação na pré-qualificação (art. 61, I).","Protocolar a solicitação, em formulário específico via SEI, no mínimo 15 dias antes da data sugerida (art. 63 e art. 64, parágrafo único).","Entregar o texto (PDF e Word) aos membros da banca com antecedência mínima de 15 dias (art. 61, III).","Banca de 4 doutores: orientador ou coorientador, 1 membro interno ao Programa, 1 membro externo ao Programa e 1 suplente (art. 64).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 65, parágrafo único)."]
+    M:["Fazer a qualificação em até 20 meses da data de matrícula, após aprovação na pré-qualificação (art. 56, I).","Protocolar a solicitação, em formulário específico via SEI, no mínimo 15 dias antes da data sugerida (art. 57 e art. 58, parágrafo único).","Entregar o texto (PDF e Word) aos membros da banca com antecedência mínima de 15 dias (art. 56, III).","Banca de 4 doutores no mínimo: orientador ou coorientador, ao menos 2 membros titulares externos à UFAC e ao Programa e 1 suplente (art. 58; Normativa 01/2026, art. 5º). Não se exige membro interno (Normativa, art. 5º, § 2º).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 59, parágrafo único)."],
+    D:["Fazer a qualificação em até 40 meses da data de matrícula, após aprovação na pré-qualificação (art. 61, I).","Protocolar a solicitação, em formulário específico via SEI, no mínimo 15 dias antes da data sugerida (art. 63 e art. 64, parágrafo único).","Entregar o texto (PDF e Word) aos membros da banca com antecedência mínima de 15 dias (art. 61, III).","Banca de 4 doutores no mínimo: orientador ou coorientador, ao menos 2 membros titulares externos à UFAC e ao Programa e 1 suplente (art. 64; Normativa 01/2026, art. 5º). Não se exige membro interno (Normativa, art. 5º, § 2º).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 65, parágrafo único)."]
   },
   def:{
-    M:["Requerer a defesa via SEI, com no mínimo 30 dias de antecedência da data prevista (art. 68).","Banca de 3 membros titulares e 1 suplente, sem contar o coorientador (salvo falta do orientador), com ao menos 1 membro de fora do corpo docente do Programa; o orientador preside (art. 70, § 1º).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 71, parágrafo único)."],
-    D:["Requerer a defesa via SEI, com no mínimo 30 dias de antecedência da data prevista (art. 68).","Banca de 5 membros titulares e 2 suplentes, sem contar o coorientador (salvo falta do orientador), com ao menos 2 membros de fora do corpo docente da UFAC; o orientador preside (art. 70, § 2º).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 71, parágrafo único)."]
+    M:["Requerer a defesa via SEI, com no mínimo 30 dias de antecedência da data prevista (art. 68).","Banca de 3 membros titulares e 1 suplente, sem contar o coorientador (salvo falta do orientador); o orientador preside (art. 70, § 1º).","Ao menos 2 membros titulares externos à UFAC e ao Programa (Normativa 01/2026, art. 5º).","Ao menos 1 membro titular, diverso do orientador e do coorientador, que tenha participado da banca de qualificação do(a) discente (memória de banca), salvo impedimento de força maior decidido pelo Colegiado (Normativa 01/2026, art. 6º).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 71, parágrafo único)."],
+    D:["Requerer a defesa via SEI, com no mínimo 30 dias de antecedência da data prevista (art. 68).","Banca de 5 membros titulares e 2 suplentes, sem contar o coorientador (salvo falta do orientador); o orientador preside (art. 70, § 2º).","Ao menos 2 membros titulares externos à UFAC e ao Programa (Normativa 01/2026, art. 5º).","Ao menos 1 membro titular, diverso do orientador e do coorientador, que tenha participado da banca de qualificação do(a) discente (memória de banca), salvo impedimento de força maior decidido pelo Colegiado (Normativa 01/2026, art. 6º).","Presencial ou remota; se remota, obrigatoriamente síncrona (art. 71, parágrafo único)."]
   }
 };
 
@@ -321,13 +328,8 @@ function telFmt(s){var d=(s||"").replace(/\D/g,"");
   return (s||"").trim();}
 function emailOk(s){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((s||"").trim());}
 function isUfac(s){return /\bufac\b|universidade federal do acre/i.test(s||"");}
-/* Interpretação adotada pelo Programa: docente de outra instituição, credenciado no Programa (vínculo P), conta como interno
-   para a Normativa 01/2026, art. 4º, e para o RI, art. 70, § 2º. Para a leitura literal (só vínculo com a UFAC), troque por false. */
-var P_CONTA_COMO_INTERNO=true;
-function intProg(m){return m.vinc==="UP"||m.vinc==="P";}
-function extProg(m){return m.vinc==="U"||m.vinc==="E";}
-function intLegal(m){return m.vinc==="UP"||m.vinc==="U"||(P_CONTA_COMO_INTERNO&&m.vinc==="P");}
-function extLegal(m){return m.vinc==="E"||(!P_CONTA_COMO_INTERNO&&m.vinc==="P");}
+/* Normativa 01/2026, art. 5º, § 1º: só é externo à UFAC e ao Programa quem não integra o corpo docente do PPGCIAM e não tem vínculo funcional com a UFAC (vínculo E). */
+function ehExterno(m){return m.vinc==="E";}
 function nomeAbrev(s){return /(^|\s)(dr|dra|prof|profa|prof\.|profº|drº)\.?(\s|$)/i.test(s)||/(^|\s)[A-Za-zÀ-ÿ]\.(\s|$)/.test(s);}
 
 /* ---------- elenco inicial ---------- */
@@ -340,7 +342,7 @@ function elencoPadrao(){
   else f=["ori","tit","tit","tit","tit","sup","sup"];
   return f.map(function(x){var m=novoMembro(x);if(x==="ori")m.vinc="UP";return m;});
 }
-function novoMembro(f){return {nome:"",inst:"",funcao:f||"tit",vinc:"",cpf:"",semcpf:false,tel:"",email:""};}
+function novoMembro(f){return {nome:"",inst:"",funcao:f||"tit",vinc:"",memoria:false,cpf:"",semcpf:false,tel:"",email:""};}
 
 /* ---------- interface ---------- */
 function etapaNivel(){
@@ -354,12 +356,13 @@ function atualizaEscolha(){
   var box=$("regras");
   if(ok){
     var li=REGRAS[st.etapa][st.nivel].map(function(t){return "<li>"+esc(t)+"</li>";}).join("");
-    var extra="<li>A composição da banca é submetida à apreciação e aprovação do Colegiado, e as bancas devem ter no máximo 1 membro titular da UFAC além do orientador (Normativa 01/2026, art. 4º). Docente de outra instituição que é credenciado no Programa conta como interno.</li>";
+    var extra="<li>A composição da banca é submetida à apreciação e aprovação do Colegiado (Normativa 01/2026, art. 7º, § 2º). É externo à UFAC e ao Programa quem não integra o corpo docente do PPGCIAM, em qualquer categoria, nem tem vínculo funcional com a UFAC (art. 5º, § 1º). Orientador e coorientador não contam para o mínimo de externos (art. 5º, § 3º).</li>";
     box.innerHTML="<h3>O que as normas pedem para esta solicitação</h3><ul>"+li+extra+"</ul><p class='fonte'>Artigos do Regimento Interno do Programa (2022), exceto quando indicado.</p>"+
       "<p class='fonte'>Quer calcular seus prazos? Use a calculadora do <a href='"+(st.nivel==="M"?"guia-mestrado.html":"guia-doutorado.html")+"#calculadora' target='_blank' rel='noopener'>Guia do Discente</a>.</p>";
     box.hidden=false;
     $("lblTitulo").textContent=st.nivel==="M"?"Título da dissertação":"Título da tese";
-    if(!st.tocou){st.membros=elencoPadrao();renderMembros();}
+    if(!st.tocou)st.membros=elencoPadrao();
+    renderMembros();$("blocoMem").hidden=st.etapa!=="def";
     conferir();
   }else{box.hidden=true;}
   $("e_etapa").style.display="none";$("e_nivel").style.display="none";
@@ -375,7 +378,8 @@ function renderMembros(){
     "<div class='grid2'>"+
     "<div class='campo'><label for='m"+i+"i'>Instituição (sigla)</label><input type='text' id='m"+i+"i' data-k='inst' data-req='1' placeholder='Ex.: UFAC' value='"+esc(m.inst)+"'><div class='err'>Preencha este campo.</div></div>"+
  "<div class='campo'><label for='m"+i+"f'>Função na banca</label><select id='m"+i+"f' data-k='funcao'>"+optHtml(m.funcao)+"</select></div></div>"+
-    "<div class='campo'><label for='m"+i+"v'>Vínculo</label><select id='m"+i+"v' data-k='vinc'>"+optVinc(m.vinc)+"</select><div class='err'>Escolha o vínculo.</div></div>"+
+    "<div class='campo'><label for='m"+i+"v'>Vínculo</label><select id='m"+i+"v' data-k='vinc'>"+optVinc(m.vinc)+"</select><div class='err'>Escolha o vínculo.</div>"+
+    "<label class='chk memlab'"+(st.etapa==="def"&&m.funcao==="tit"?"":" hidden")+"><input type='checkbox' data-k='memoria'"+(m.memoria?" checked":"")+"> Participou da banca de qualificação deste(a) discente (memória de banca)</label></div>"+
     "<div class='grid3'>"+
     "<div class='campo'><label for='m"+i+"c'>CPF</label><input type='text' inputmode='numeric' id='m"+i+"c' data-k='cpf' data-cpf='1' placeholder='000.000.000-00' value='"+esc(m.cpf)+"'"+(m.semcpf?" disabled":"")+"><div class='err'>Informe o CPF.</div>"+
     "<label class='chk'><input type='checkbox' data-k='semcpf'"+(m.semcpf?" checked":"")+"> Não possui CPF (estrangeiro)</label></div>"+
@@ -412,34 +416,36 @@ function conferir(){
   if(!temOri&&!(e==="qual"&&M.some(function(m){return m.funcao==="coo";})))A("warn","Inclua o orientador, que preside a banca.");
   var vincOk=TT.every(function(m){return !!m.vinc;});
   if(!vincOk)A("info","Escolha o vínculo de cada membro titular para a conferência completa da banca.");
+  var EX=TT.filter(ehExterno).length;
   if(e==="qual"){
     var falta=[];
     if(!M.some(function(m){return m.funcao==="ori"||m.funcao==="coo"||m.funcao==="cooP";}))falta.push("orientador ou coorientador");
-    if(!TT.some(intProg))falta.push("1 membro interno ao Programa");
-    if(!TT.some(extProg))falta.push("1 membro externo ao Programa");
+    if(EX<2)falta.push("2 membros titulares externos à UFAC e ao Programa (identificados: "+EX+")");
     if(!S.length)falta.push("1 suplente");
     var artq=n==="M"?"art. 58":"art. 64";
-    if(falta.length)A("warn","Banca de qualificação incompleta. Faltam: "+falta.join(", ")+" (RI, "+artq+").");
-    else A("ok","Banca com os componentes previstos: orientador ou coorientador, membro interno ao Programa, membro externo ao Programa e suplente (RI, "+artq+").");
+    if(falta.length)A("warn","Banca de qualificação incompleta. Faltam: "+falta.join(", ")+" (Normativa 01/2026, art. 5º; RI, "+artq+"). Orientador e coorientador não contam como externos.");
+    else A("ok","Banca com os componentes previstos: orientador ou coorientador, ao menos 2 membros titulares externos à UFAC e ao Programa e suplente (Normativa 01/2026, art. 5º; RI, "+artq+"). Não se exige membro interno (art. 5º, § 2º).");
   }else if(e==="def"){
     var rt=n==="M"?3:5,rs=n==="M"?1:2,pa=n==="M"?"§ 1º":"§ 2º";
     if(T.length!==rt)A("warn","A banca tem "+T.length+" titular(es) e o RI prevê "+rt+", sem contar o coorientador (art. 70, "+pa+").");
     else A("ok",rt+" membros titulares, como prevê o RI (art. 70, "+pa+").");
     if(S.length!==rs)A("warn","A banca tem "+S.length+" suplente(s) e o RI prevê "+rs+" (art. 70, "+pa+").");
     else A("ok",rs+" suplente(s), como prevê o RI (art. 70, "+pa+").");
-    var rx=n==="M"?1:2;
-    var ext=n==="M"?TT.filter(extProg).length:TT.filter(extLegal).length;
-    var tx=n==="M"?"de fora do corpo docente do Programa":"de fora do corpo docente da UFAC";
-    if(ext<rx)A("warn","São necessários ao menos "+rx+" membro(s) titular(es) "+tx+"; foram identificados "+ext+" pelo vínculo informado (RI, art. 70, "+pa+").");
-    else A("ok","Ao menos "+rx+" membro(s) "+tx+" (RI, art. 70, "+pa+").");
+    if(EX<2)A("warn","São necessários ao menos 2 membros titulares externos à UFAC e ao Programa; foram identificados "+EX+" pelo vínculo informado (Normativa 01/2026, art. 5º). Orientador e coorientador não contam.");
+    else A("ok","Ao menos 2 membros titulares externos à UFAC e ao Programa (Normativa 01/2026, art. 5º).");
+    /* memória de banca (art. 6º) */
+    var NM=TT.filter(function(m){return m.memoria;}).length;
+    var disp=$("dispMem")&&$("dispMem").checked;
+    if(disp){
+      A("info","Dispensa da memória de banca por força maior: o requerimento fundamentado, com a documentação comprobatória, deve ser apresentado com o pedido de defesa e será decidido pelo Colegiado (Normativa 01/2026, art. 6º, §§ 3º e 4º). Agenda e distância não são força maior (§ 5º).");
+    }else if(NM<1)A("warn","Marque ao menos 1 membro titular, diverso do orientador e do coorientador, que participou da banca de qualificação do(a) discente (memória de banca, Normativa 01/2026, art. 6º). Sem isso, só a dispensa por força maior, decidida pelo Colegiado, permite a defesa.");
+    else A("ok",NM+" membro(s) titular(es) com memória de banca (Normativa 01/2026, art. 6º). A participação é comprovada pela ata da qualificação (art. 6º, § 1º).");
   }else{
+    if(EX<1)A("warn","É necessário ao menos 1 membro titular externo à UFAC e ao Programa (identificados: "+EX+"; Normativa 01/2026, art. 4º). Orientador e coorientador não contam.");
+    else A("ok","Ao menos 1 membro titular externo à UFAC e ao Programa (Normativa 01/2026, art. 4º).");
     A("info","O Regimento não fixa o número de membros da banca de pré-qualificação. Confirme a composição com o orientador e a Secretaria.");
   }
-  /* Normativa art. 4 */
-  var ufac=TT.filter(intLegal).length;
-  if(ufac>1)A("warn","Há "+ufac+" membros titulares internos (da UFAC ou docentes do Programa) além do orientador. A Normativa 01/2026 (art. 4º) admite no máximo 1.");
-  else if(TT.length&&vincOk)A("ok","No máximo 1 membro titular da UFAC além do orientador (Normativa 01/2026, art. 4º).");
-  if(TT.some(function(m){return m.vinc==="P";}))A("info","Membro “externo à UFAC, interno ao Programa”: conta como interno ao Programa (RI, arts. 58, 64 e 70, § 1º) e, pela interpretação adotada pelo Programa, como "+(P_CONTA_COMO_INTERNO?"interno":"externo à UFAC")+" no art. 4º da Normativa e no art. 70, § 2º do RI.");
+  if(TT.some(function(m){return m.vinc==="P"||m.vinc==="U";}))A("info","Membro titular com vínculo “externo à UFAC, interno ao Programa” ou “interno à UFAC, externo ao Programa” não conta como externo à UFAC e ao Programa (Normativa 01/2026, art. 5º, § 1º).");
   M.forEach(function(m,i){
     var ins=(m.inst||"").trim();
     if((m.vinc==="P"||m.vinc==="E")&&ins&&isUfac(ins))A("warn","Membro "+(i+1)+": vínculo “externo à UFAC” com instituição UFAC. Confira.");
@@ -464,10 +470,11 @@ function validar(){
     marca(el,b);if(b)bad.push(el);
   });
   if(!st.membros.length){bad.push($("addM"));}
+  if(st.etapa==="def"&&$("dispMem").checked){var bd=!$("dispTxt").value.trim();marca($("dispTxt"),bd);if(bd)bad.push($("dispTxt"));}
   st.membros.forEach(function(m,i){
     var root=document.querySelector(".membro[data-i='"+i+"']");
     root.querySelectorAll("[data-k]").forEach(function(el){
-      var k=el.getAttribute("data-k");if(k==="vinc"){var bv=el.value==="";marca(el,bv);if(bv)bad.push(el);return;}if(k==="funcao"||k==="semcpf")return;
+      var k=el.getAttribute("data-k");if(k==="vinc"){var bv=el.value==="";marca(el,bv);if(bv)bad.push(el);return;}if(k==="funcao"||k==="semcpf"||k==="memoria")return;
       var b=false,val=el.value.trim();
       if(k==="cpf")b=!m.semcpf&&val==="";
       else if(k==="email")b=!emailOk(val);
@@ -502,11 +509,12 @@ function gerarDoc(){
   h+=linhaCampo("Local:",v("local"));
   h+="</table>";
   h+="<table class='g g2'><thead><tr><th class='cinza' colspan='3'>MEMBROS DA BANCA EXAMINADORA</th></tr><tr><th style='width:34%'>Nome Completo (Sem abreviações):</th><th style='width:22%'>Instituição (Sigla):</th><th>Função na Banca / Vínculo</th></tr></thead><tbody>";
-  M.forEach(function(m,i){h+="<tr><td>"+(i+1)+". "+esc(m.nome)+"</td><td>"+esc(m.inst)+"</td><td>"+esc(ROTULO[m.funcao])+"<span class='vf'>"+esc(VINCL[m.vinc]||"")+"</span></td></tr>";});
+  M.forEach(function(m,i){h+="<tr><td>"+(i+1)+". "+esc(m.nome)+"</td><td>"+esc(m.inst)+"</td><td>"+esc(ROTULO[m.funcao])+"<span class='vf'>"+esc(VINCL[m.vinc]||"")+"</span>"+(st.etapa==="def"&&m.funcao==="tit"&&m.memoria?"<span class='vf'>Memória de banca</span>":"")+"</td></tr>";});
   h+="</tbody></table>";
   h+="<table class='g g2'><thead><tr><th style='width:7%'></th><th style='width:27%'>CPF:</th><th style='width:26%'>Telefone:</th><th>E-mail:</th></tr></thead><tbody>";
   M.forEach(function(m,i){h+="<tr><td class='n'>"+(i+1)+".</td><td>"+esc(m.semcpf?"Não possui":cpfMask(m.cpf))+"</td><td>"+esc(telFmt(m.tel))+"</td><td style='word-break:break-all'>"+esc(m.email)+"</td></tr>";});
   h+="</tbody></table>";
+  if(st.etapa==="def"&&$("dispMem").checked)h+="<p class='dispmem'><strong>Memória de banca:</strong> dispensa requerida por impedimento de força maior (Normativa 01/2026, art. 6º, §§ 3º e 4º), a ser decidida pelo Colegiado. Justificativa: "+esc(v("dispTxt"))+" A documentação comprobatória acompanha o pedido de defesa.</p>";
   h+="<div class='fim'><p class='dtl'><strong>Rio Branco, "+esc(fmtExt(dd))+"</strong></p>";
   h+="<div class='assin'><div>Assinatura do Discente</div><div>Assinatura do Orientador</div></div></div>";
   h+="</div></td></tr></tbody></table>";
@@ -525,6 +533,7 @@ function escala(){
 document.addEventListener("change",function(ev){
   var t=ev.target;
   if(t.name==="etapa"||t.name==="nivel"){atualizaEscolha();return;}
+  if(t.id==="dispMem"){$("dispBox").hidden=!t.checked;conferir();return;}
 });
 $("f").addEventListener("input",function(ev){
   var t=ev.target,k=t.getAttribute&&t.getAttribute("data-k");
@@ -532,12 +541,14 @@ $("f").addEventListener("input",function(ev){
   if(k){
     var i=+t.closest(".membro").getAttribute("data-i"),m=st.membros[i];
     if(k==="semcpf"){m.semcpf=t.checked;var c=t.closest(".campo").querySelector("[data-k=cpf]");c.disabled=t.checked;if(t.checked){c.value="";m.cpf="";c.classList.remove("inv");}}
+    else if(k==="memoria"){m.memoria=t.checked;}
     else{
       if(k==="cpf"){var pos=cpfMask(t.value);if(pos!==t.value)t.value=pos;}
       m[k]=t.value;
     }
+    if(k==="funcao"){var lb=t.closest(".membro").querySelector(".memlab");if(lb){var vis=st.etapa==="def"&&m.funcao==="tit";lb.hidden=!vis;if(!vis){m.memoria=false;lb.querySelector("input").checked=false;}}}
     st.tocou=true;
-    if(k==="funcao"||k==="vinc"||k==="inst"||k==="semcpf"||k==="cpf"||k==="nome")conferir();
+    if(k==="funcao"||k==="vinc"||k==="inst"||k==="semcpf"||k==="cpf"||k==="nome"||k==="memoria")conferir();
   }else{conferir();}
 });
 $("f").addEventListener("focusout",function(ev){
